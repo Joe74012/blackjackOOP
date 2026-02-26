@@ -5,6 +5,7 @@ namespace blackjackOOP
         public Form1()
         {
             InitializeComponent();
+            card1 = new card();
         }
 
         private void button1_Click(object sender, EventArgs e)
