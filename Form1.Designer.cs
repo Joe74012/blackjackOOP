@@ -28,24 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             button1 = new Button();
             label1 = new Label();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(679, 389);
+            button1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            button1.BackColor = Color.FromArgb(255, 128, 0);
+            button1.BackgroundImageLayout = ImageLayout.None;
+            button1.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button1.ForeColor = Color.Transparent;
+            button1.Location = new Point(343, 354);
+            button1.MaximumSize = new Size(94, 29);
+            button1.MinimumSize = new Size(94, 29);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            button1.Text = "Start";
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(142, 173);
+            label1.Location = new Point(636, 326);
             label1.Name = "label1";
             label1.Size = new Size(50, 20);
             label1.TabIndex = 1;
@@ -55,11 +63,16 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(255, 192, 192);
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(800, 450);
             Controls.Add(label1);
             Controls.Add(button1);
+            DoubleBuffered = true;
             Name = "Form1";
             Text = "Form1";
+            Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
         }
