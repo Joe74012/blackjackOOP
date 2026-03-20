@@ -39,11 +39,14 @@
             linkLabel1 = new LinkLabel();
             flowLayoutPanel1 = new FlowLayoutPanel();
             flowLayoutPanel3 = new FlowLayoutPanel();
+            label3 = new Label();
             flowLayoutPanel2 = new FlowLayoutPanel();
-            button6 = new Button();
+            flowLayoutPanel4 = new FlowLayoutPanel();
+            label4 = new Label();
             flowLayoutPanel1.SuspendLayout();
             flowLayoutPanel3.SuspendLayout();
             flowLayoutPanel2.SuspendLayout();
+            flowLayoutPanel4.SuspendLayout();
             SuspendLayout();
             // 
             // button1
@@ -182,11 +185,24 @@
             flowLayoutPanel3.Anchor = AnchorStyles.None;
             flowLayoutPanel3.BackColor = Color.Transparent;
             flowLayoutPanel3.Controls.Add(label2);
+            flowLayoutPanel3.Controls.Add(label3);
             flowLayoutPanel3.Font = new Font("Georgia", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             flowLayoutPanel3.Location = new Point(328, 113);
             flowLayoutPanel3.Name = "flowLayoutPanel3";
             flowLayoutPanel3.Size = new Size(236, 41);
             flowLayoutPanel3.TabIndex = 10;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Arial Rounded MT Bold", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.Yellow;
+            label3.Location = new Point(3, 39);
+            label3.Name = "label3";
+            label3.Size = new Size(229, 39);
+            label3.TabIndex = 4;
+            label3.Text = "BLACKJACK";
             // 
             // flowLayoutPanel2
             // 
@@ -198,15 +214,28 @@
             flowLayoutPanel2.Size = new Size(165, 62);
             flowLayoutPanel2.TabIndex = 11;
             // 
-            // button6
+            // flowLayoutPanel4
             // 
-            button6.FlatAppearance.BorderColor = Color.Yellow;
-            button6.FlatAppearance.BorderSize = 4;
-            button6.Location = new Point(230, 79);
-            button6.Name = "button6";
-            button6.Size = new Size(460, 305);
-            button6.TabIndex = 12;
-            button6.UseVisualStyleBackColor = true;
+            flowLayoutPanel4.Anchor = AnchorStyles.None;
+            flowLayoutPanel4.BackColor = Color.Transparent;
+            flowLayoutPanel4.Controls.Add(label4);
+            flowLayoutPanel4.Font = new Font("Georgia", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            flowLayoutPanel4.Location = new Point(372, 157);
+            flowLayoutPanel4.Name = "flowLayoutPanel4";
+            flowLayoutPanel4.Size = new Size(133, 22);
+            flowLayoutPanel4.TabIndex = 11;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = Color.Transparent;
+            label4.Font = new Font("Arial Rounded MT Bold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.White;
+            label4.Location = new Point(3, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(127, 20);
+            label4.TabIndex = 3;
+            label4.Text = "Aantal spelers";
             // 
             // Form1
             // 
@@ -216,9 +245,9 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(904, 458);
-            Controls.Add(button6);
             Controls.Add(flowLayoutPanel2);
             Controls.Add(flowLayoutPanel1);
+            Controls.Add(flowLayoutPanel4);
             Controls.Add(linkLabel1);
             Controls.Add(label1);
             Controls.Add(flowLayoutPanel3);
@@ -230,6 +259,8 @@
             flowLayoutPanel3.PerformLayout();
             flowLayoutPanel2.ResumeLayout(false);
             flowLayoutPanel2.PerformLayout();
+            flowLayoutPanel4.ResumeLayout(false);
+            flowLayoutPanel4.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -247,6 +278,8 @@
         private FlowLayoutPanel flowLayoutPanel1;
         private FlowLayoutPanel flowLayoutPanel3;
         private FlowLayoutPanel flowLayoutPanel2;
-        private Button button6;
+        private Label label3;
+        private FlowLayoutPanel flowLayoutPanel4;
+        private Label label4;
     }
 }
