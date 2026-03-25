@@ -1,7 +1,9 @@
-namespace blackjackOOP
+﻿namespace blackjackOOP
 {
     public partial class Form1 : Form
     {
+        int players;
+
         public Form1()
         {
             InitializeComponent();
@@ -30,13 +32,10 @@ namespace blackjackOOP
             button4.BackColor = Color.FromArgb(255, 128, 0);
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
+            players = 1;
+            label5.Text = players.ToString();
             button2.BackColor = Color.Green;
             button3.BackColor = Color.FromArgb(255, 128, 0);
             button4.BackColor = Color.FromArgb(255, 128, 0);
@@ -45,6 +44,8 @@ namespace blackjackOOP
 
         private void button5_Click(object sender, EventArgs e)
         {
+            players = 4;
+            label5.Text = players.ToString();
             button5.BackColor = Color.Green;
             button3.BackColor = Color.FromArgb(255, 128, 0);
             button2.BackColor = Color.FromArgb(255, 128, 0);
@@ -73,6 +74,8 @@ namespace blackjackOOP
 
         private void button3_Click(object sender, EventArgs e)
         {
+            players = 2;
+            label5.Text = players.ToString();
             button3.BackColor = Color.Green;
             button4.BackColor = Color.FromArgb(255, 128, 0);
             button2.BackColor = Color.FromArgb(255, 128, 0);
@@ -81,6 +84,8 @@ namespace blackjackOOP
 
         private void button4_Click(object sender, EventArgs e)
         {
+            players = 3;
+            label5.Text = players.ToString();
             button4.BackColor = Color.Green;
             button3.BackColor = Color.FromArgb(255, 128, 0);
             button2.BackColor = Color.FromArgb(255, 128, 0);
