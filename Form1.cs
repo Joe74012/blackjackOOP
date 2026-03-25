@@ -35,6 +35,7 @@
         private void button2_Click(object sender, EventArgs e)
         {
             players = 1;
+            givePlayerNames(players);
             label5.Text = players.ToString();
             button2.BackColor = Color.Green;
             button3.BackColor = Color.FromArgb(255, 128, 0);
@@ -45,6 +46,7 @@
         private void button5_Click(object sender, EventArgs e)
         {
             players = 4;
+            givePlayerNames(players);
             label5.Text = players.ToString();
             button5.BackColor = Color.Green;
             button3.BackColor = Color.FromArgb(255, 128, 0);
@@ -75,6 +77,7 @@
         private void button3_Click(object sender, EventArgs e)
         {
             players = 2;
+            givePlayerNames(players);
             label5.Text = players.ToString();
             button3.BackColor = Color.Green;
             button4.BackColor = Color.FromArgb(255, 128, 0);
@@ -85,11 +88,50 @@
         private void button4_Click(object sender, EventArgs e)
         {
             players = 3;
+            givePlayerNames(players);
             label5.Text = players.ToString();
             button4.BackColor = Color.Green;
             button3.BackColor = Color.FromArgb(255, 128, 0);
             button2.BackColor = Color.FromArgb(255, 128, 0);
             button5.BackColor = Color.FromArgb(255, 128, 0);
+        }
+
+        private void givePlayerNames(int aantalSpelers)
+        {
+            string[] naamSpeler1 = { "Alice", "Bob", "Charlie", "Diana", "Eve" };
+            string[] naamSpeler2 = { "Frank", "Grace", "Hank", "Ivan", "Julia" };
+            string[] naamSpeler3 = { "Kevin", "Laura", "Mike", "Nina", "Oscar" };
+            string[] naamSpeler4 = { "Paul", "Quinn", "Rachel", "Steve", "Tina" };
+
+            Random random = new Random();
+
+            switch (aantalSpelers)
+            {
+                case 1:
+                    label6.Text = naamSpeler1[random.Next(0, 5)];
+                    label7.Text = "";
+                    label8.Text = "";
+                    label9.Text = "";
+                    break;
+                case 2:
+                    label6.Text = naamSpeler1[random.Next(0, 5)];
+                    label7.Text = naamSpeler2[random.Next(0, 5)];
+                    label8.Text = "";
+                    label9.Text = "";
+                    break;
+                case 3:
+                    label6.Text = naamSpeler1[random.Next(0, 5)];
+                    label7.Text = naamSpeler2[random.Next(0, 5)];
+                    label8.Text = naamSpeler3[random.Next(0, 5)];
+                    label9.Text = "";
+                    break;
+                case 4:
+                    label6.Text = naamSpeler1[random.Next(0, 5)];
+                    label7.Text = naamSpeler2[random.Next(0, 5)];
+                    label8.Text = naamSpeler3[random.Next(0, 5)];
+                    label9.Text = naamSpeler4[random.Next(0, 5)];
+                    break;
+            }
         }
     }
 }
