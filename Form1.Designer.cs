@@ -43,7 +43,6 @@
             label3 = new Label();
             flowLayoutPanel2 = new FlowLayoutPanel();
             flowLayoutPanel4 = new FlowLayoutPanel();
-            label5 = new Label();
             label6 = new Label();
             label7 = new Label();
             label8 = new Label();
@@ -51,7 +50,6 @@
             flowLayoutPanel5 = new FlowLayoutPanel();
             flowLayoutPanel6 = new FlowLayoutPanel();
             textBox1 = new TextBox();
-            button7 = new Button();
             label2 = new Label();
             label4 = new Label();
             label10 = new Label();
@@ -261,15 +259,6 @@
             flowLayoutPanel4.Size = new Size(133, 22);
             flowLayoutPanel4.TabIndex = 11;
             // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(139, 205);
-            label5.Name = "label5";
-            label5.Size = new Size(128, 20);
-            label5.TabIndex = 14;
-            label5.Text = "Nog geen waarde";
-            // 
             // label6
             // 
             label6.AutoSize = true;
@@ -336,16 +325,6 @@
             textBox1.TextAlign = HorizontalAlignment.Center;
             textBox1.KeyPress += textBox1_KeyPress;
             // 
-            // button7
-            // 
-            button7.Location = new Point(668, 137);
-            button7.Name = "button7";
-            button7.Size = new Size(94, 29);
-            button7.TabIndex = 19;
-            button7.Text = "next state";
-            button7.UseVisualStyleBackColor = true;
-            button7.Click += button7_Click;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -353,14 +332,12 @@
             BackColor = Color.DarkGreen;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(904, 458);
-            Controls.Add(button7);
             Controls.Add(label9);
             Controls.Add(flowLayoutPanel6);
             Controls.Add(flowLayoutPanel5);
             Controls.Add(label8);
             Controls.Add(label7);
             Controls.Add(label6);
-            Controls.Add(label5);
             Controls.Add(flowLayoutPanel2);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(flowLayoutPanel4);
@@ -401,14 +378,12 @@
         private Label label3;
         private FlowLayoutPanel flowLayoutPanel4;
         private Label label4;
-        private Label label5;
         private Label label6;
         private Label label7;
         private Label label8;
         private Label label9;
         private FlowLayoutPanel flowLayoutPanel5;
         private FlowLayoutPanel flowLayoutPanel6;
-        private Button button7;
         private TextBox textBox1;
     }
 }

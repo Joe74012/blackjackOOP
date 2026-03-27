@@ -11,7 +11,7 @@
         }
 
         GameState currentGameState = GameState.SETUP;
-
+        int ingevoerdGetal;
         int players;
 
         public Form1()
@@ -20,11 +20,39 @@
             Card card1 = new Card(Rank.ACE, Suit.HEARTS);
             Card card2 = new Card(Rank.TWO, Suit.HEARTS);
             label1.Text = card1.ToString() + " " + card2.Value.ToString();
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            label1.Text = "OK";
+            if (int.TryParse(textBox1.Text, out int getal))
+            {
+                ingevoerdGetal = getal;
+            }
+            switch (currentGameState)
+            {
+                case GameState.START:
+                    currentGameState = GameState.ROUND;
+                    break;
+                case GameState.ROUND:
+                    currentGameState = GameState.SETUP;
+                    break;
+                case GameState.SETUP:
+                    //amount of players and decks function call
+                    if (players != 0)
+                    {
+                        if (ingevoerdGetal > 0)
+                        {
+                            startScene scherm2 = new startScene();
+                            scherm2.WindowState = FormWindowState.Maximized;
+                            scherm2.Show();
+                            this.Hide();
+                            currentGameState = GameState.START;
+                        }
+                    }
+                    break;
+            }
+            button1.Text = currentGameState.ToString();
         }
 
 
@@ -46,7 +74,6 @@
         {
             players = 1;
             givePlayerNames(players);
-            label5.Text = players.ToString();
             button2.BackColor = Color.Green;
             button3.BackColor = Color.FromArgb(255, 128, 0);
             button4.BackColor = Color.FromArgb(255, 128, 0);
@@ -57,38 +84,17 @@
         {
             players = 4;
             givePlayerNames(players);
-            label5.Text = players.ToString();
             button5.BackColor = Color.Green;
             button3.BackColor = Color.FromArgb(255, 128, 0);
             button2.BackColor = Color.FromArgb(255, 128, 0);
             button4.BackColor = Color.FromArgb(255, 128, 0);
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            CenterPanels();
-        }
-
-        private void Form1_Resize(object sender, EventArgs e)
-        {
-            CenterPanels();
-        }
-
-        private void CenterPanels()
-        {
-            flowLayoutPanel1.Left = (this.ClientSize.Width - flowLayoutPanel1.Width) / 2;
-            flowLayoutPanel1.Top = (this.ClientSize.Height - flowLayoutPanel1.Height) / 2;
-            flowLayoutPanel2.Left = (this.ClientSize.Width - flowLayoutPanel3.Width) / 2;
-            flowLayoutPanel2.Top = flowLayoutPanel1.Top - flowLayoutPanel3.Height + 15;
-            flowLayoutPanel3.Left = (this.ClientSize.Width - flowLayoutPanel3.Width) / 2;
-            flowLayoutPanel3.Top = flowLayoutPanel1.Top - flowLayoutPanel3.Height - 15;
-        }
 
         private void button3_Click(object sender, EventArgs e)
         {
             players = 2;
             givePlayerNames(players);
-            label5.Text = players.ToString();
             button3.BackColor = Color.Green;
             button4.BackColor = Color.FromArgb(255, 128, 0);
             button2.BackColor = Color.FromArgb(255, 128, 0);
@@ -99,7 +105,6 @@
         {
             players = 3;
             givePlayerNames(players);
-            label5.Text = players.ToString();
             button4.BackColor = Color.Green;
             button3.BackColor = Color.FromArgb(255, 128, 0);
             button2.BackColor = Color.FromArgb(255, 128, 0);
@@ -146,23 +151,7 @@
 
         private void button7_Click(object sender, EventArgs e)
         {
-            switch (currentGameState)
-            {
-                case GameState.START:
-                    currentGameState = GameState.ROUND;
-                    break;
-                case GameState.ROUND:
-                    currentGameState = GameState.SETUP;
-                    break;
-                case GameState.SETUP:
-                    //amount of players and decks function call
-                    if (players != 0)
-                    {
-                        currentGameState = GameState.START;
-                    }
-                    break;
-            }
-            //button7.Text = currentGameState.ToString();
+            
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
