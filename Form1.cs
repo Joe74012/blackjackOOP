@@ -1,7 +1,17 @@
 ﻿namespace blackjackOOP
 {
+
     public partial class Form1 : Form
     {
+        enum GameState
+        {
+            START,
+            ROUND,
+            SETUP
+        }
+
+        GameState currentGameState = GameState.SETUP;
+
         int players;
 
         public Form1()
@@ -131,6 +141,35 @@
                     label8.Text = naamSpeler3[random.Next(0, 5)];
                     label9.Text = naamSpeler4[random.Next(0, 5)];
                     break;
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            switch (currentGameState)
+            {
+                case GameState.START:
+                    currentGameState = GameState.ROUND;
+                    break;
+                case GameState.ROUND:
+                    currentGameState = GameState.SETUP;
+                    break;
+                case GameState.SETUP:
+                    //amount of players and decks function call
+                    if (players != 0)
+                    {
+                        currentGameState = GameState.START;
+                    }
+                    break;
+            }
+            //button7.Text = currentGameState.ToString();
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // teken wordt genegeerd
             }
         }
     }

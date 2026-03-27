@@ -30,6 +30,7 @@
         {
             Label label2;
             Label label4;
+            Label label10;
             button2 = new Button();
             button3 = new Button();
             button4 = new Button();
@@ -47,12 +48,19 @@
             label7 = new Label();
             label8 = new Label();
             label9 = new Label();
+            flowLayoutPanel5 = new FlowLayoutPanel();
+            flowLayoutPanel6 = new FlowLayoutPanel();
+            textBox1 = new TextBox();
+            button7 = new Button();
             label2 = new Label();
             label4 = new Label();
+            label10 = new Label();
             flowLayoutPanel1.SuspendLayout();
             flowLayoutPanel3.SuspendLayout();
             flowLayoutPanel2.SuspendLayout();
             flowLayoutPanel4.SuspendLayout();
+            flowLayoutPanel5.SuspendLayout();
+            flowLayoutPanel6.SuspendLayout();
             SuspendLayout();
             // 
             // label2
@@ -78,6 +86,18 @@
             label4.Size = new Size(127, 20);
             label4.TabIndex = 3;
             label4.Text = "Aantal spelers";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.BackColor = Color.Transparent;
+            label10.Font = new Font("Arial Rounded MT Bold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label10.ForeColor = Color.Transparent;
+            label10.Location = new Point(3, 0);
+            label10.Name = "label10";
+            label10.Size = new Size(116, 20);
+            label10.TabIndex = 3;
+            label10.Text = "Aantal decks";
             // 
             // button2
             // 
@@ -225,7 +245,7 @@
             flowLayoutPanel2.Anchor = AnchorStyles.None;
             flowLayoutPanel2.BackColor = Color.Transparent;
             flowLayoutPanel2.Controls.Add(button1);
-            flowLayoutPanel2.Location = new Point(368, 334);
+            flowLayoutPanel2.Location = new Point(357, 330);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
             flowLayoutPanel2.Size = new Size(154, 47);
             flowLayoutPanel2.TabIndex = 11;
@@ -286,6 +306,46 @@
             label9.TabIndex = 18;
             label9.Text = "label9";
             // 
+            // flowLayoutPanel5
+            // 
+            flowLayoutPanel5.Anchor = AnchorStyles.None;
+            flowLayoutPanel5.BackColor = Color.Transparent;
+            flowLayoutPanel5.Controls.Add(label10);
+            flowLayoutPanel5.Font = new Font("Georgia", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            flowLayoutPanel5.Location = new Point(374, 256);
+            flowLayoutPanel5.Name = "flowLayoutPanel5";
+            flowLayoutPanel5.Size = new Size(133, 22);
+            flowLayoutPanel5.TabIndex = 12;
+            // 
+            // flowLayoutPanel6
+            // 
+            flowLayoutPanel6.Anchor = AnchorStyles.None;
+            flowLayoutPanel6.BackColor = Color.Transparent;
+            flowLayoutPanel6.Controls.Add(textBox1);
+            flowLayoutPanel6.Location = new Point(372, 284);
+            flowLayoutPanel6.Name = "flowLayoutPanel6";
+            flowLayoutPanel6.Size = new Size(135, 42);
+            flowLayoutPanel6.TabIndex = 12;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(3, 3);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(125, 27);
+            textBox1.TabIndex = 20;
+            textBox1.TextAlign = HorizontalAlignment.Center;
+            textBox1.KeyPress += textBox1_KeyPress;
+            // 
+            // button7
+            // 
+            button7.Location = new Point(668, 137);
+            button7.Name = "button7";
+            button7.Size = new Size(94, 29);
+            button7.TabIndex = 19;
+            button7.Text = "next state";
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -293,7 +353,10 @@
             BackColor = Color.DarkGreen;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(904, 458);
+            Controls.Add(button7);
             Controls.Add(label9);
+            Controls.Add(flowLayoutPanel6);
+            Controls.Add(flowLayoutPanel5);
             Controls.Add(label8);
             Controls.Add(label7);
             Controls.Add(label6);
@@ -314,6 +377,10 @@
             flowLayoutPanel2.ResumeLayout(false);
             flowLayoutPanel4.ResumeLayout(false);
             flowLayoutPanel4.PerformLayout();
+            flowLayoutPanel5.ResumeLayout(false);
+            flowLayoutPanel5.PerformLayout();
+            flowLayoutPanel6.ResumeLayout(false);
+            flowLayoutPanel6.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -339,5 +406,9 @@
         private Label label7;
         private Label label8;
         private Label label9;
+        private FlowLayoutPanel flowLayoutPanel5;
+        private FlowLayoutPanel flowLayoutPanel6;
+        private Button button7;
+        private TextBox textBox1;
     }
 }
