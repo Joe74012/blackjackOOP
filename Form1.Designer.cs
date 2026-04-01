@@ -43,10 +43,6 @@
             label3 = new Label();
             flowLayoutPanel2 = new FlowLayoutPanel();
             flowLayoutPanel4 = new FlowLayoutPanel();
-            label6 = new Label();
-            label7 = new Label();
-            label8 = new Label();
-            label9 = new Label();
             flowLayoutPanel5 = new FlowLayoutPanel();
             flowLayoutPanel6 = new FlowLayoutPanel();
             textBox1 = new TextBox();
@@ -189,9 +185,8 @@
             label1.AutoSize = true;
             label1.Location = new Point(740, 396);
             label1.Name = "label1";
-            label1.Size = new Size(50, 20);
+            label1.Size = new Size(0, 20);
             label1.TabIndex = 1;
-            label1.Text = "label1";
             // 
             // linkLabel1
             // 
@@ -259,42 +254,6 @@
             flowLayoutPanel4.Size = new Size(133, 22);
             flowLayoutPanel4.TabIndex = 11;
             // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(177, 350);
-            label6.Name = "label6";
-            label6.Size = new Size(50, 20);
-            label6.TabIndex = 15;
-            label6.Text = "label6";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(177, 303);
-            label7.Name = "label7";
-            label7.Size = new Size(50, 20);
-            label7.TabIndex = 16;
-            label7.Text = "label7";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(83, 303);
-            label8.Name = "label8";
-            label8.Size = new Size(50, 20);
-            label8.TabIndex = 17;
-            label8.Text = "label8";
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new Point(83, 357);
-            label9.Name = "label9";
-            label9.Size = new Size(50, 20);
-            label9.TabIndex = 18;
-            label9.Text = "label9";
-            // 
             // flowLayoutPanel5
             // 
             flowLayoutPanel5.Anchor = AnchorStyles.None;
@@ -332,12 +291,8 @@
             BackColor = Color.DarkGreen;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(904, 458);
-            Controls.Add(label9);
             Controls.Add(flowLayoutPanel6);
             Controls.Add(flowLayoutPanel5);
-            Controls.Add(label8);
-            Controls.Add(label7);
-            Controls.Add(label6);
             Controls.Add(flowLayoutPanel2);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(flowLayoutPanel4);
@@ -378,10 +333,6 @@
         private Label label3;
         private FlowLayoutPanel flowLayoutPanel4;
         private Label label4;
-        private Label label6;
-        private Label label7;
-        private Label label8;
-        private Label label9;
         private FlowLayoutPanel flowLayoutPanel5;
         private FlowLayoutPanel flowLayoutPanel6;
         private TextBox textBox1;
