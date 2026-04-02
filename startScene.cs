@@ -17,6 +17,8 @@ namespace blackjackOOP
         private int kaarten;
         private int players;
         int kaartPerSpeler;
+        private Card dealerCard1;  // <-- add
+        private Card dealerCard2;  // <-- add (the hidden one)
 
         // Constructor uitbreiden met parameters
 
@@ -80,16 +82,31 @@ namespace blackjackOOP
             return null;
         }
 
+        private Image getCardBackImage()
+        {
+            string folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "Cards");
+            folderPath = Path.GetFullPath(folderPath);
+            string backPath = Path.Combine(folderPath, "card_back.png");
+            if (File.Exists(backPath))
+                return Image.FromFile(backPath);
+            return null;
+        }
+
+        private void RevealDealerCard()
+        {
+            pictureBoxDealer2.Image = getCardImage(dealerCard2);
+        }
+
         private void DealCards(deck deck, int aantalSpelers)
         {
             Label[] nameLabels = { label4, label5, label6, label7 };
 
             PictureBox[,] cardBoxes = {
-                { pictureBox1, pictureBox2 },
-                { pictureBox3, pictureBox4 },
-                { pictureBox5, pictureBox6 },
-                { pictureBox7, pictureBox8 }
-            };
+            { pictureBox1, pictureBox2 },
+            { pictureBox3, pictureBox4 },
+            { pictureBox5, pictureBox6 },
+            { pictureBox7, pictureBox8 }
+        };
 
             for (int i = 0; i < aantalSpelers; i++)
             {
@@ -99,6 +116,12 @@ namespace blackjackOOP
                 cardBoxes[i, 0].Image = getCardImage(card1);
                 cardBoxes[i, 1].Image = getCardImage(card2);
             }
+
+            dealerCard1 = deck.Deal();
+            dealerCard2 = deck.Deal();
+
+            pictureBoxDealer1.Image = getCardImage(dealerCard1);
+            pictureBoxDealer2.Image = getCardBackImage();
 
             label1.Text = "Aantal kaarten: " + deck.Cards.Count;
         }

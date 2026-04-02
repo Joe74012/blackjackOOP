@@ -42,6 +42,8 @@
             pictureBox6 = new PictureBox();
             pictureBox7 = new PictureBox();
             pictureBox8 = new PictureBox();
+            pictureBoxDealer1 = new PictureBox();
+            pictureBoxDealer2 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -50,6 +52,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxDealer1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxDealer2).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -178,12 +182,32 @@
             pictureBox8.TabIndex = 13;
             pictureBox8.TabStop = false;
             // 
+            // pictureBoxDealer1
+            // 
+            pictureBoxDealer1.Location = new Point(250, 356);
+            pictureBoxDealer1.Name = "pictureBoxDealer1";
+            pictureBoxDealer1.Size = new Size(125, 62);
+            pictureBoxDealer1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxDealer1.TabIndex = 15;
+            pictureBoxDealer1.TabStop = false;
+            // 
+            // pictureBoxDealer2
+            // 
+            pictureBoxDealer2.Location = new Point(402, 356);
+            pictureBoxDealer2.Name = "pictureBoxDealer2";
+            pictureBoxDealer2.Size = new Size(125, 62);
+            pictureBoxDealer2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxDealer2.TabIndex = 16;
+            pictureBoxDealer2.TabStop = false;
+            // 
             // startScene
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkGreen;
             ClientSize = new Size(800, 450);
+            Controls.Add(pictureBoxDealer2);
+            Controls.Add(pictureBoxDealer1);
             Controls.Add(pictureBox7);
             Controls.Add(pictureBox8);
             Controls.Add(pictureBox5);
@@ -208,6 +232,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxDealer1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxDealer2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -228,5 +254,7 @@
         private PictureBox pictureBox6;
         private PictureBox pictureBox7;
         private PictureBox pictureBox8;
+        private PictureBox pictureBoxDealer1;
+        private PictureBox pictureBoxDealer2;
     }
 }
