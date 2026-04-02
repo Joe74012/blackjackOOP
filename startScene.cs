@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Reflection.Emit;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -61,18 +61,29 @@ namespace blackjackOOP
         {
             InitializeComponent();
             deck deck = new deck(ingevoerdGetal);
+            deck.Shuffle();
             label1.Text = "Aantal kaarten: " + deck.Cards.Count;
             this.players = aantalPlayers;
-            label2.Text = "spelers: " + aantalPlayers.ToString();
+            label2.Text = "Spelers: " + aantalPlayers.ToString();
             givePlayerNames(aantalPlayers);
-
-            deck deck2 = new deck(1);
-
-            foreach (Card card in deck2.Cards)
-            {
-                Console.WriteLine(card.ToString());
-            }
+            DealCards(deck, aantalPlayers);
         }
 
+        private void DealCards(deck deck, int aantalSpelers)
+        {
+            Label[] nameLabels = { label4, label5, label6, label7 };
+            Label[] cardLabels = { label8, label9, label10, label11 };
+
+            int cardIndex = 0;
+
+            for (int i = 0; i < aantalSpelers; i++)
+            {
+                Card card1 = deck.Cards[cardIndex++];
+                Card card2 = deck.Cards[cardIndex++];
+
+                string playerName = nameLabels[i].Text;
+                cardLabels[i].Text = $"{playerName}: {card1} | {card2}";
+            }
+        }
     }
 }
