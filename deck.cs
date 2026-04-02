@@ -26,5 +26,12 @@ namespace blackjackOOP
             Random random = new Random();
             Cards = Cards.OrderBy(c => random.Next()).ToList();
         }
+
+        public Card Deal()
+        {
+            Card card = Cards[0];
+            Cards.RemoveAt(0);
+            return card;
+        }
     }
 }

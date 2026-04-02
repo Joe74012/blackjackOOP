@@ -91,15 +91,16 @@ namespace blackjackOOP
                 { pictureBox7, pictureBox8 }
             };
 
-            int cardIndex = 0;
             for (int i = 0; i < aantalSpelers; i++)
             {
-                Card card1 = deck.Cards[cardIndex++];
-                Card card2 = deck.Cards[cardIndex++];
+                Card card1 = deck.Deal();
+                Card card2 = deck.Deal();
 
                 cardBoxes[i, 0].Image = getCardImage(card1);
                 cardBoxes[i, 1].Image = getCardImage(card2);
             }
+
+            label1.Text = "Aantal kaarten: " + deck.Cards.Count;
         }
     }
 }
