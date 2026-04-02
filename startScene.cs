@@ -57,16 +57,21 @@ namespace blackjackOOP
                     break;
             }
         }
-        public startScene(int aantalKaarten, int aantalPlayers)
+        public startScene(int ingevoerdGetal, int aantalPlayers)
         {
             InitializeComponent();
-            kaartPerSpeler = aantalKaarten / aantalPlayers;
-            this.kaarten = aantalKaarten;
+            deck deck = new deck(ingevoerdGetal);
+            label1.Text = "Aantal kaarten: " + deck.Cards.Count;
             this.players = aantalPlayers;
-            label1.Text = "kaarten: "+aantalKaarten.ToString();
             label2.Text = "spelers: " + aantalPlayers.ToString();
-            label3.Text = "kaarten per speler: " + kaartPerSpeler.ToString();
             givePlayerNames(aantalPlayers);
+
+            deck deck2 = new deck(1);
+
+            foreach (Card card in deck2.Cards)
+            {
+                Console.WriteLine(card.ToString());
+            }
         }
 
     }

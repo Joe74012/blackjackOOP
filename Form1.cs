@@ -1,4 +1,6 @@
-﻿namespace blackjackOOP
+﻿using blackjackOOP.Enums;
+using blackjackOOP;
+namespace blackjackOOP
 {
 
     public partial class Form1 : Form
@@ -20,7 +22,7 @@
             InitializeComponent();
             Card card1 = new Card(Rank.ACE, Suit.HEARTS);
             Card card2 = new Card(Rank.TWO, Suit.HEARTS);
-            label1.Text = card1.ToString() + " " + card2.Value.ToString();
+            label1.Text = card1.ToString() + ", " + card2.Value.ToString();
             this.WindowState = FormWindowState.Maximized;
         }
 
@@ -44,8 +46,7 @@
                     {
                         if (ingevoerdGetal > 0)
                         {
-                            kaarten = ingevoerdGetal * 52;
-                            startScene scherm2 = new startScene(kaarten, players);
+                            startScene scherm2 = new startScene(ingevoerdGetal, players);
                             scherm2.WindowState = FormWindowState.Maximized;
                             scherm2.Show();
                             this.Hide();
