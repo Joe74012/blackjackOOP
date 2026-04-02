@@ -40,6 +40,13 @@ namespace blackjackOOP
             this.isfacedown = false;
         }
 
+        public string getImage()
+        {
+            string rankName = rank.ToString().ToLower();
+            string suitName = suit.ToString().ToLower();
+            return $"{rankName}_of_{suitName}.png";
+        }
+
 
 
         public void Flip()
