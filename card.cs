@@ -13,6 +13,9 @@ namespace blackjackOOP
         private Suit suit;
         private bool isfacedown;
 
+        public Rank Rank { get { return rank; } }
+        public Suit Suit { get { return suit; } }
+
         public int Value
         {
             get

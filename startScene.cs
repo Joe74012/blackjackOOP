@@ -69,20 +69,36 @@ namespace blackjackOOP
             DealCards(deck, aantalPlayers);
         }
 
+        private Image getCardImage(Card card)
+        {
+            string cardName = card.getImage();
+            string folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "Cards");
+            folderPath = Path.GetFullPath(folderPath);
+            string[] files = Directory.GetFiles(folderPath, $"*{cardName}");
+            if (files.Length > 0)
+                return Image.FromFile(files[0]);
+            return null;
+        }
+
         private void DealCards(deck deck, int aantalSpelers)
         {
             Label[] nameLabels = { label4, label5, label6, label7 };
-            Label[] cardLabels = { label8, label9, label10, label11 };
+
+            PictureBox[,] cardBoxes = {
+                { pictureBox1, pictureBox2 },
+                { pictureBox3, pictureBox4 },
+                { pictureBox5, pictureBox6 },
+                { pictureBox7, pictureBox8 }
+            };
 
             int cardIndex = 0;
-
             for (int i = 0; i < aantalSpelers; i++)
             {
                 Card card1 = deck.Cards[cardIndex++];
                 Card card2 = deck.Cards[cardIndex++];
 
-                string playerName = nameLabels[i].Text;
-                cardLabels[i].Text = $"{playerName}: {card1} | {card2}";
+                cardBoxes[i, 0].Image = getCardImage(card1);
+                cardBoxes[i, 1].Image = getCardImage(card2);
             }
         }
     }
