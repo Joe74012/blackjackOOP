@@ -99,6 +99,13 @@ namespace blackjackOOP
             return null;
         }
 
+        private Image rotateImage(Image image)
+        {
+            Bitmap rotated = new Bitmap(image);
+            rotated.RotateFlip(RotateFlipType.Rotate180FlipNone);
+            return rotated;
+        }
+
         private void RevealDealerCard()
         {
             pictureBoxDealer2.Image = getCardImage(dealerCard2);
@@ -133,13 +140,14 @@ namespace blackjackOOP
                 await Task.Delay(1000);
             }
 
-            // deal dealer cards
             dealerCard1 = deck.Deal();
             pictureBoxDealer1.Image = getCardImage(dealerCard1);
             await Task.Delay(1000);
 
             dealerCard2 = deck.Deal();
-            pictureBoxDealer2.Image = getCardBackImage(); // hidden
+            pictureBoxDealer2.Image = getCardImage(dealerCard2); 
+            await Task.Delay(2000);
+            pictureBoxDealer2.Image = getCardBackImage();
             await Task.Delay(1000);
 
             label1.Text = "Aantal kaarten: " + deck.Cards.Count;
