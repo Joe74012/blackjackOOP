@@ -44,6 +44,7 @@
             pictureBox8 = new PictureBox();
             pictureBoxDealer1 = new PictureBox();
             pictureBoxDealer2 = new PictureBox();
+            labelLog = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -59,7 +60,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(23, 76);
+            label1.Location = new Point(26, 421);
             label1.Name = "label1";
             label1.Size = new Size(50, 20);
             label1.TabIndex = 0;
@@ -68,7 +69,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(23, 26);
+            label2.Location = new Point(26, 371);
             label2.Name = "label2";
             label2.Size = new Size(50, 20);
             label2.TabIndex = 1;
@@ -77,7 +78,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(673, 210);
+            label4.Location = new Point(45, 46);
             label4.Name = "label4";
             label4.Size = new Size(50, 20);
             label4.TabIndex = 3;
@@ -86,7 +87,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(58, 210);
+            label5.Location = new Point(45, 126);
             label5.Name = "label5";
             label5.Size = new Size(50, 20);
             label5.TabIndex = 4;
@@ -95,7 +96,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(416, 31);
+            label6.Location = new Point(45, 209);
             label6.Name = "label6";
             label6.Size = new Size(50, 20);
             label6.TabIndex = 5;
@@ -104,7 +105,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(235, 31);
+            label7.Location = new Point(45, 291);
             label7.Name = "label7";
             label7.Size = new Size(50, 20);
             label7.TabIndex = 6;
@@ -112,93 +113,102 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(542, 278);
+            pictureBox1.Location = new Point(110, 46);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(125, 62);
+            pictureBox1.Size = new Size(46, 62);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 7;
             pictureBox1.TabStop = false;
             // 
             // pictureBox2
             // 
-            pictureBox2.Location = new Point(542, 210);
+            pictureBox2.Location = new Point(162, 46);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(125, 62);
+            pictureBox2.Size = new Size(46, 62);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 8;
             pictureBox2.TabStop = false;
             // 
             // pictureBox3
             // 
-            pictureBox3.Location = new Point(114, 210);
+            pictureBox3.Location = new Point(110, 126);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(125, 62);
+            pictureBox3.Size = new Size(46, 62);
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.TabIndex = 10;
             pictureBox3.TabStop = false;
             // 
             // pictureBox4
             // 
-            pictureBox4.Location = new Point(114, 278);
+            pictureBox4.Location = new Point(162, 126);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(125, 62);
+            pictureBox4.Size = new Size(46, 62);
             pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox4.TabIndex = 9;
             pictureBox4.TabStop = false;
             // 
             // pictureBox5
             // 
-            pictureBox5.Location = new Point(416, 58);
+            pictureBox5.Location = new Point(110, 209);
             pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(125, 62);
+            pictureBox5.Size = new Size(46, 62);
             pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox5.TabIndex = 12;
             pictureBox5.TabStop = false;
             // 
             // pictureBox6
             // 
-            pictureBox6.Location = new Point(416, 126);
+            pictureBox6.Location = new Point(162, 209);
             pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(125, 62);
+            pictureBox6.Size = new Size(46, 62);
             pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox6.TabIndex = 11;
             pictureBox6.TabStop = false;
             // 
             // pictureBox7
             // 
-            pictureBox7.Location = new Point(235, 58);
+            pictureBox7.Location = new Point(110, 291);
             pictureBox7.Name = "pictureBox7";
-            pictureBox7.Size = new Size(125, 62);
+            pictureBox7.Size = new Size(46, 62);
             pictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox7.TabIndex = 14;
             pictureBox7.TabStop = false;
             // 
             // pictureBox8
             // 
-            pictureBox8.Location = new Point(235, 126);
+            pictureBox8.Location = new Point(162, 291);
             pictureBox8.Name = "pictureBox8";
-            pictureBox8.Size = new Size(125, 62);
+            pictureBox8.Size = new Size(46, 62);
             pictureBox8.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox8.TabIndex = 13;
             pictureBox8.TabStop = false;
             // 
             // pictureBoxDealer1
             // 
-            pictureBoxDealer1.Location = new Point(250, 356);
+            pictureBoxDealer1.Location = new Point(351, 356);
             pictureBoxDealer1.Name = "pictureBoxDealer1";
-            pictureBoxDealer1.Size = new Size(125, 62);
+            pictureBoxDealer1.Size = new Size(46, 62);
             pictureBoxDealer1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxDealer1.TabIndex = 15;
             pictureBoxDealer1.TabStop = false;
             // 
             // pictureBoxDealer2
             // 
-            pictureBoxDealer2.Location = new Point(402, 356);
+            pictureBoxDealer2.Location = new Point(403, 356);
             pictureBoxDealer2.Name = "pictureBoxDealer2";
-            pictureBoxDealer2.Size = new Size(125, 62);
+            pictureBoxDealer2.Size = new Size(46, 62);
             pictureBoxDealer2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxDealer2.TabIndex = 16;
             pictureBoxDealer2.TabStop = false;
+            // 
+            // labelLog
+            // 
+            labelLog.AutoSize = true;
+            labelLog.Location = new Point(431, 291);
+            labelLog.Name = "labelLog";
+            labelLog.Size = new Size(50, 20);
+            labelLog.TabIndex = 17;
+            labelLog.Text = "label3";
             // 
             // startScene
             // 
@@ -206,6 +216,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkGreen;
             ClientSize = new Size(800, 450);
+            Controls.Add(labelLog);
             Controls.Add(pictureBoxDealer2);
             Controls.Add(pictureBoxDealer1);
             Controls.Add(pictureBox7);
@@ -256,5 +267,6 @@
         private PictureBox pictureBox8;
         private PictureBox pictureBoxDealer1;
         private PictureBox pictureBoxDealer2;
+        private Label labelLog;
     }
 }

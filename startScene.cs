@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
@@ -13,14 +14,13 @@ namespace blackjackOOP
 {
     public partial class startScene : Form
     {
-        // Variabelen opslaan in startScene
         private int kaarten;
         private int players;
         int kaartPerSpeler;
-        private Card dealerCard1;  // <-- add
-        private Card dealerCard2;  // <-- add (the hidden one)
-
-        // Constructor uitbreiden met parameters
+        private Card dealerCard1;
+        private Card dealerCard2;
+        private List<Player> botPlayers = new List<Player>();
+        private List<List<PictureBox>> playerBoxes = new List<List<PictureBox>>();
 
         private void givePlayerNames(int aantalSpelers)
         {
@@ -59,6 +59,7 @@ namespace blackjackOOP
                     break;
             }
         }
+
         public startScene(int ingevoerdGetal, int aantalPlayers)
         {
             InitializeComponent();
@@ -68,7 +69,13 @@ namespace blackjackOOP
             this.players = aantalPlayers;
             label2.Text = "Spelers: " + aantalPlayers.ToString();
             givePlayerNames(aantalPlayers);
-            DealCards(deck, aantalPlayers);
+            _ = StartGame(deck, aantalPlayers);
+        }
+
+        private async Task StartGame(deck deck, int aantalPlayers)
+        {
+            await DealCards(deck, aantalPlayers);
+            await PlayBotTurns(deck, botPlayers);
         }
 
         private Image getCardImage(Card card)
@@ -92,38 +99,95 @@ namespace blackjackOOP
             return null;
         }
 
+        private Image rotateImage(Image image)
+        {
+            Bitmap rotated = new Bitmap(image);
+            rotated.RotateFlip(RotateFlipType.Rotate180FlipNone);
+            return rotated;
+        }
+
         private void RevealDealerCard()
         {
             pictureBoxDealer2.Image = getCardImage(dealerCard2);
         }
 
-        private void DealCards(deck deck, int aantalSpelers)
+        private async Task DealCards(deck deck, int aantalSpelers)
         {
             Label[] nameLabels = { label4, label5, label6, label7 };
 
             PictureBox[,] cardBoxes = {
-            { pictureBox1, pictureBox2 },
-            { pictureBox3, pictureBox4 },
-            { pictureBox5, pictureBox6 },
-            { pictureBox7, pictureBox8 }
-        };
+                { pictureBox1, pictureBox2 },
+                { pictureBox3, pictureBox4 },
+                { pictureBox5, pictureBox6 },
+                { pictureBox7, pictureBox8 }
+            };
 
             for (int i = 0; i < aantalSpelers; i++)
             {
-                Card card1 = deck.Deal();
-                Card card2 = deck.Deal();
+                Player player = new Player(nameLabels[i].Text);
+                botPlayers.Add(player);
 
+                Card card1 = deck.Deal();
+                player.Hand.Add(card1);
                 cardBoxes[i, 0].Image = getCardImage(card1);
+                playerBoxes.Add(new List<PictureBox> { cardBoxes[i, 0] });
+                await Task.Delay(1000);
+
+                Card card2 = deck.Deal();
+                player.Hand.Add(card2);
                 cardBoxes[i, 1].Image = getCardImage(card2);
+                playerBoxes[i].Add(cardBoxes[i, 1]);
+                await Task.Delay(1000);
             }
 
             dealerCard1 = deck.Deal();
-            dealerCard2 = deck.Deal();
-
             pictureBoxDealer1.Image = getCardImage(dealerCard1);
+            await Task.Delay(1000);
+
+            dealerCard2 = deck.Deal();
+            pictureBoxDealer2.Image = getCardImage(dealerCard2); 
+            await Task.Delay(2000);
             pictureBoxDealer2.Image = getCardBackImage();
+            await Task.Delay(1000);
 
             label1.Text = "Aantal kaarten: " + deck.Cards.Count;
+        }
+
+        private async Task PlayBotTurns(deck deck, List<Player> players)
+        {
+            string log = "";
+
+            for (int i = 0; i < players.Count; i++)
+            {
+                Player player = players[i];
+                string action = player.BotDecide();
+
+                if (action == "hit")
+                {
+                    Card newCard = deck.Deal();
+                    player.Hand.Add(newCard);
+
+                    PictureBox lastBox = playerBoxes[i][playerBoxes[i].Count - 1];
+                    PictureBox newBox = new PictureBox();
+                    newBox.SizeMode = PictureBoxSizeMode.Zoom;
+                    newBox.Size = lastBox.Size;
+                    newBox.Location = new Point(lastBox.Location.X + lastBox.Width + 5, lastBox.Location.Y);
+                    newBox.Image = getCardImage(newCard);
+                    this.Controls.Add(newBox);
+                    playerBoxes[i].Add(newBox);
+
+                    log += $"{player.Name} hits → got {newCard}\n";
+                    await Task.Delay(1000);
+                }
+                else if (action == "stand")
+                {
+                    player.IsStanding = true;
+                    log += $"{player.Name} stands with {player.HandValue()}\n";
+                    await Task.Delay(1000);
+                }
+
+                labelLog.Text = log;
+            }
         }
     }
 }
