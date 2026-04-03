@@ -13,6 +13,9 @@ namespace blackjackOOP
         private Suit suit;
         private bool isfacedown;
 
+        public Rank Rank { get { return rank; } }
+        public Suit Suit { get { return suit; } }
+
         public int Value
         {
             get
@@ -38,6 +41,13 @@ namespace blackjackOOP
             this.rank = rank;
             this.suit = suit;
             this.isfacedown = false;
+        }
+
+        public string getImage()
+        {
+            string rankName = rank.ToString().ToLower();
+            string suitName = suit.ToString().ToLower();
+            return $"{rankName}_of_{suitName}.png";
         }
 
 
