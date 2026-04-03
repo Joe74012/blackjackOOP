@@ -27,5 +27,18 @@ namespace blackjackOOP
         {
             return Hand.Count == 2 && Hand[0].Value == Hand[1].Value;
         }
+
+        public string BotDecide()
+        {
+            int value = HandValue();
+
+            if (CanSplit() && value <= 12)
+                return "split";
+
+            if (value >= 17)
+                return "stand";
+
+            return "hit";
+        }
     }
 }

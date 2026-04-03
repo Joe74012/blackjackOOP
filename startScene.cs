@@ -13,14 +13,12 @@ namespace blackjackOOP
 {
     public partial class startScene : Form
     {
-        // Variabelen opslaan in startScene
         private int kaarten;
         private int players;
         int kaartPerSpeler;
-        private Card dealerCard1;  // <-- add
-        private Card dealerCard2;  // <-- add (the hidden one)
-
-        // Constructor uitbreiden met parameters
+        private Card dealerCard1;
+        private Card dealerCard2;
+        private List<Player> botPlayers = new List<Player>();
 
         private void givePlayerNames(int aantalSpelers)
         {
@@ -69,6 +67,8 @@ namespace blackjackOOP
             label2.Text = "Spelers: " + aantalPlayers.ToString();
             givePlayerNames(aantalPlayers);
             DealCards(deck, aantalPlayers);
+            PlayBotTurns(deck, botPlayers);
+
         }
 
         private Image getCardImage(Card card)
@@ -102,16 +102,22 @@ namespace blackjackOOP
             Label[] nameLabels = { label4, label5, label6, label7 };
 
             PictureBox[,] cardBoxes = {
-            { pictureBox1, pictureBox2 },
-            { pictureBox3, pictureBox4 },
-            { pictureBox5, pictureBox6 },
-            { pictureBox7, pictureBox8 }
-        };
+        { pictureBox1, pictureBox2 },
+        { pictureBox3, pictureBox4 },
+        { pictureBox5, pictureBox6 },
+        { pictureBox7, pictureBox8 }
+    };
 
             for (int i = 0; i < aantalSpelers; i++)
             {
                 Card card1 = deck.Deal();
                 Card card2 = deck.Deal();
+
+                // create player and add cards to their hand
+                Player player = new Player(nameLabels[i].Text);
+                player.Hand.Add(card1);
+                player.Hand.Add(card2);
+                botPlayers.Add(player);  // store in the list
 
                 cardBoxes[i, 0].Image = getCardImage(card1);
                 cardBoxes[i, 1].Image = getCardImage(card2);
@@ -119,11 +125,47 @@ namespace blackjackOOP
 
             dealerCard1 = deck.Deal();
             dealerCard2 = deck.Deal();
-
             pictureBoxDealer1.Image = getCardImage(dealerCard1);
             pictureBoxDealer2.Image = getCardBackImage();
 
             label1.Text = "Aantal kaarten: " + deck.Cards.Count;
+        }
+
+        private void PlayBotTurns(deck deck, List<Player> players)
+        {
+            string log = "";
+
+            foreach (Player player in players)
+            {
+                string action = player.BotDecide();
+
+                if (action == "hit")
+                {
+                    Card newCard = deck.Deal();
+                    player.Hand.Add(newCard);
+                    log += $"{player.Name} hits → got {newCard}\n";
+                }
+                else if (action == "stand")
+                {
+                    player.IsStanding = true;
+                    log += $"{player.Name} stands with {player.HandValue()}\n";
+                }
+                else if (action == "split")
+                {
+                    Card splitCard = player.Hand[1];
+                    player.Hand.RemoveAt(1);
+
+                    Player newHand = new Player(player.Name + " (split)");
+                    newHand.Hand.Add(splitCard);
+                    newHand.Hand.Add(deck.Deal());
+                    player.Hand.Add(deck.Deal());
+                    players.Add(newHand);
+
+                    log += $"{player.Name} splits!\n";
+                }
+            }
+
+            labelLog.Text = log;  // show all actions at once
         }
     }
 }

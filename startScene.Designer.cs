@@ -44,6 +44,7 @@
             pictureBox8 = new PictureBox();
             pictureBoxDealer1 = new PictureBox();
             pictureBoxDealer2 = new PictureBox();
+            labelLog = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -200,12 +201,22 @@
             pictureBoxDealer2.TabIndex = 16;
             pictureBoxDealer2.TabStop = false;
             // 
+            // labelLog
+            // 
+            labelLog.AutoSize = true;
+            labelLog.Location = new Point(383, 235);
+            labelLog.Name = "labelLog";
+            labelLog.Size = new Size(50, 20);
+            labelLog.TabIndex = 17;
+            labelLog.Text = "label3";
+            // 
             // startScene
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkGreen;
             ClientSize = new Size(800, 450);
+            Controls.Add(labelLog);
             Controls.Add(pictureBoxDealer2);
             Controls.Add(pictureBoxDealer1);
             Controls.Add(pictureBox7);
@@ -256,5 +267,6 @@
         private PictureBox pictureBox8;
         private PictureBox pictureBoxDealer1;
         private PictureBox pictureBoxDealer2;
+        private Label labelLog;
     }
 }
