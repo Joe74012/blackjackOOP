@@ -21,6 +21,7 @@ namespace blackjackOOP
         private Card dealerCard2;
         private List<Player> botPlayers = new List<Player>();
         private List<List<PictureBox>> playerBoxes = new List<List<PictureBox>>();
+        private deck currentDeck;
 
         private void givePlayerNames(int aantalSpelers)
         {
@@ -63,13 +64,12 @@ namespace blackjackOOP
         public startScene(int ingevoerdGetal, int aantalPlayers)
         {
             InitializeComponent();
-            deck deck = new deck(ingevoerdGetal);
-            deck.Shuffle();
-            label1.Text = "Aantal kaarten: " + deck.Cards.Count;
+            currentDeck = new deck(ingevoerdGetal);
+            currentDeck.Shuffle();
+            label1.Text = "Aantal kaarten: " + currentDeck.Cards.Count;
             this.players = aantalPlayers;
             label2.Text = "Spelers: " + aantalPlayers.ToString();
             givePlayerNames(aantalPlayers);
-            _ = StartGame(deck, aantalPlayers);
         }
 
         private async Task StartGame(deck deck, int aantalPlayers)
@@ -122,6 +122,9 @@ namespace blackjackOOP
                 { pictureBox7, pictureBox8 }
             };
 
+            botPlayers.Clear();
+            playerBoxes.Clear();
+
             for (int i = 0; i < aantalSpelers; i++)
             {
                 Player player = new Player(nameLabels[i].Text);
@@ -145,8 +148,6 @@ namespace blackjackOOP
             await Task.Delay(1000);
 
             dealerCard2 = deck.Deal();
-            pictureBoxDealer2.Image = getCardImage(dealerCard2); 
-            await Task.Delay(2000);
             pictureBoxDealer2.Image = getCardBackImage();
             await Task.Delay(1000);
 
@@ -188,6 +189,16 @@ namespace blackjackOOP
 
                 labelLog.Text = log;
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            RevealDealerCard();
+        }
+
+        private async void button2_Click(object sender, EventArgs e)
+        {
+            await DealCards(currentDeck, players);
         }
     }
 }

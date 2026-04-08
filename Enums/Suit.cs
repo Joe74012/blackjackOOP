@@ -13,4 +13,4 @@ namespace blackjackOOP.Enums
         DIAMONDS,
         SPADES
     }
-}
+}   

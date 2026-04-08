@@ -45,6 +45,8 @@
             pictureBoxDealer1 = new PictureBox();
             pictureBoxDealer2 = new PictureBox();
             labelLog = new Label();
+            button1 = new Button();
+            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -185,7 +187,7 @@
             // 
             // pictureBoxDealer1
             // 
-            pictureBoxDealer1.Location = new Point(351, 356);
+            pictureBoxDealer1.Location = new Point(330, 291);
             pictureBoxDealer1.Name = "pictureBoxDealer1";
             pictureBoxDealer1.Size = new Size(46, 62);
             pictureBoxDealer1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -194,7 +196,7 @@
             // 
             // pictureBoxDealer2
             // 
-            pictureBoxDealer2.Location = new Point(403, 356);
+            pictureBoxDealer2.Location = new Point(382, 291);
             pictureBoxDealer2.Name = "pictureBoxDealer2";
             pictureBoxDealer2.Size = new Size(46, 62);
             pictureBoxDealer2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -204,11 +206,31 @@
             // labelLog
             // 
             labelLog.AutoSize = true;
-            labelLog.Location = new Point(431, 291);
+            labelLog.Location = new Point(410, 226);
             labelLog.Name = "labelLog";
             labelLog.Size = new Size(50, 20);
             labelLog.TabIndex = 17;
             labelLog.Text = "label3";
+            // 
+            // button1
+            // 
+            button1.Location = new Point(233, 386);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 18;
+            button1.Text = "Reveal";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(330, 386);
+            button2.Name = "button2";
+            button2.Size = new Size(94, 29);
+            button2.TabIndex = 19;
+            button2.Text = "Deal";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // startScene
             // 
@@ -216,6 +238,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkGreen;
             ClientSize = new Size(800, 450);
+            Controls.Add(button2);
+            Controls.Add(button1);
             Controls.Add(labelLog);
             Controls.Add(pictureBoxDealer2);
             Controls.Add(pictureBoxDealer1);
@@ -268,5 +292,7 @@
         private PictureBox pictureBoxDealer1;
         private PictureBox pictureBoxDealer2;
         private Label labelLog;
+        private Button button1;
+        private Button button2;
     }
 }
