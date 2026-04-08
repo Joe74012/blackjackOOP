@@ -121,16 +121,16 @@ namespace blackjackOOP
                 player.Hand.Add(card2);
                 cardBoxes[i, 1].Image = getCardImage(card2);
                 playerBoxes[i].Add(cardBoxes[i, 1]);
-                await Task.Delay(500);
+                await Task.Delay(250);
             }
 
             dealerCard1 = deck.Deal();
             pictureBoxDealer1.Image = getCardImage(dealerCard1);
-            await Task.Delay(500);
+            await Task.Delay(250);
 
             dealerCard2 = deck.Deal();
             pictureBoxDealer2.Image = getCardBackImage();
-            await Task.Delay(500);
+            await Task.Delay(250);
 
             label1.Text = "Aantal kaarten: " + deck.Cards.Count;
         }
