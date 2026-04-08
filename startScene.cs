@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,14 +10,12 @@ namespace blackjackOOP
 {
     public partial class startScene : Form
     {
-        private int kaarten;
         private int players;
-        int kaartPerSpeler;
-        private Card dealerCard1;
-        private Card dealerCard2;
         private List<Player> botPlayers = new List<Player>();
         private List<List<PictureBox>> playerBoxes = new List<List<PictureBox>>();
         private deck currentDeck;
+        private Card dealerCard1;
+        private Card dealerCard2;
 
         private void givePlayerNames(int aantalSpelers)
         {
@@ -66,16 +60,10 @@ namespace blackjackOOP
             InitializeComponent();
             currentDeck = new deck(ingevoerdGetal);
             currentDeck.Shuffle();
-            label1.Text = "Aantal kaarten: " + currentDeck.Cards.Count;
             this.players = aantalPlayers;
+            label1.Text = "Aantal kaarten: " + currentDeck.Cards.Count;
             label2.Text = "Spelers: " + aantalPlayers.ToString();
             givePlayerNames(aantalPlayers);
-        }
-
-        private async Task StartGame(deck deck, int aantalPlayers)
-        {
-            await DealCards(deck, aantalPlayers);
-            await PlayBotTurns(deck, botPlayers);
         }
 
         private Image getCardImage(Card card)
@@ -97,13 +85,6 @@ namespace blackjackOOP
             if (File.Exists(backPath))
                 return Image.FromFile(backPath);
             return null;
-        }
-
-        private Image rotateImage(Image image)
-        {
-            Bitmap rotated = new Bitmap(image);
-            rotated.RotateFlip(RotateFlipType.Rotate180FlipNone);
-            return rotated;
         }
 
         private void RevealDealerCard()
@@ -134,22 +115,22 @@ namespace blackjackOOP
                 player.Hand.Add(card1);
                 cardBoxes[i, 0].Image = getCardImage(card1);
                 playerBoxes.Add(new List<PictureBox> { cardBoxes[i, 0] });
-                await Task.Delay(1000);
+                await Task.Delay(500);
 
                 Card card2 = deck.Deal();
                 player.Hand.Add(card2);
                 cardBoxes[i, 1].Image = getCardImage(card2);
                 playerBoxes[i].Add(cardBoxes[i, 1]);
-                await Task.Delay(1000);
+                await Task.Delay(500);
             }
 
             dealerCard1 = deck.Deal();
             pictureBoxDealer1.Image = getCardImage(dealerCard1);
-            await Task.Delay(1000);
+            await Task.Delay(500);
 
             dealerCard2 = deck.Deal();
             pictureBoxDealer2.Image = getCardBackImage();
-            await Task.Delay(1000);
+            await Task.Delay(500);
 
             label1.Text = "Aantal kaarten: " + deck.Cards.Count;
         }
@@ -199,6 +180,7 @@ namespace blackjackOOP
         private async void button2_Click(object sender, EventArgs e)
         {
             await DealCards(currentDeck, players);
+            await PlayBotTurns(currentDeck, botPlayers);
         }
     }
 }
