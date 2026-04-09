@@ -47,6 +47,8 @@
             label7 = new Label();
             pictureBox7 = new PictureBox();
             pictureBox8 = new PictureBox();
+            button3 = new Button();
+            labelShuffle = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxDealer1).BeginInit();
@@ -133,7 +135,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(285, 386);
+            button1.Location = new Point(382, 395);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 18;
@@ -143,7 +145,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(382, 386);
+            button2.Location = new Point(641, 352);
             button2.Name = "button2";
             button2.Size = new Size(94, 29);
             button2.TabIndex = 19;
@@ -232,12 +234,33 @@
             pictureBox8.TabIndex = 8;
             pictureBox8.TabStop = false;
             // 
+            // button3
+            // 
+            button3.Location = new Point(282, 395);
+            button3.Name = "button3";
+            button3.Size = new Size(94, 29);
+            button3.TabIndex = 20;
+            button3.Text = "Shuffle";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
+            // labelShuffle
+            // 
+            labelShuffle.AutoSize = true;
+            labelShuffle.Location = new Point(529, 296);
+            labelShuffle.Name = "labelShuffle";
+            labelShuffle.Size = new Size(50, 20);
+            labelShuffle.TabIndex = 21;
+            labelShuffle.Text = "label3";
+            // 
             // startScene
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkGreen;
             ClientSize = new Size(800, 450);
+            Controls.Add(labelShuffle);
+            Controls.Add(button3);
             Controls.Add(label7);
             Controls.Add(pictureBox7);
             Controls.Add(label6);
@@ -294,5 +317,7 @@
         private Label label7;
         private PictureBox pictureBox7;
         private PictureBox pictureBox8;
+        private Button button3;
+        private Label labelShuffle;
     }
 }

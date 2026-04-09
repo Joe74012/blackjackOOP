@@ -16,6 +16,7 @@ namespace blackjackOOP
         private deck currentDeck;
         private Card dealerCard1;
         private Card dealerCard2;
+        private bool isShuffled = false;
 
         private void givePlayerNames(int aantalSpelers)
         {
@@ -64,6 +65,8 @@ namespace blackjackOOP
             label1.Text = "Aantal kaarten: " + currentDeck.Cards.Count;
             label2.Text = "Spelers: " + aantalPlayers.ToString();
             givePlayerNames(aantalPlayers);
+
+            button2.Enabled = false;
         }
 
         private Image getCardImage(Card card)
@@ -179,8 +182,47 @@ namespace blackjackOOP
 
         private async void button2_Click(object sender, EventArgs e)
         {
+            if (!isShuffled)
+            {
+                MessageBox.Show("You must shuffle first!");
+                return;
+            }
+
+            button2.Enabled = false;
+
             await DealCards(currentDeck, players);
             await PlayBotTurns(currentDeck, botPlayers);
+
+            isShuffled = false;
+        }
+
+        private async void button3_Click(object sender, EventArgs e)
+        {
+            button3.Enabled = false;
+            Random rnd = new Random();
+
+            labelShuffle.Text = "Shuffling..";
+
+            for (int i = 0; i < 15; i++)
+            {
+                Card randomCard = currentDeck.Cards[rnd.Next(currentDeck.Cards.Count)];
+                pictureBoxDealer1.Image = getCardImage(randomCard);
+                pictureBoxDealer2.Image = getCardImage(randomCard);
+                await Task.Delay(80);
+            }
+
+            currentDeck.Shuffle();
+            pictureBoxDealer1.Image = null;
+            pictureBoxDealer2.Image = null;
+
+            labelShuffle.Text = "Shuffled!";
+            await Task.Delay(800);
+            labelShuffle.Text = "";
+
+            isShuffled = true;
+            button2.Enabled = true;
+
+            button3.Enabled = true;
         }
     }
 }
