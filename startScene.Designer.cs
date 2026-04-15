@@ -36,8 +36,8 @@
             pictureBoxDealer1 = new PictureBox();
             pictureBoxDealer2 = new PictureBox();
             labelLog = new Label();
-            button1 = new Button();
-            button2 = new Button();
+            buttonReveal = new Button();
+            buttonDeal = new Button();
             label5 = new Label();
             pictureBox3 = new PictureBox();
             pictureBox4 = new PictureBox();
@@ -47,8 +47,10 @@
             label7 = new Label();
             pictureBox7 = new PictureBox();
             pictureBox8 = new PictureBox();
-            button3 = new Button();
+            buttonShuffle = new Button();
             labelShuffle = new Label();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            buttonStart = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxDealer1).BeginInit();
@@ -59,6 +61,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
+            flowLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -133,25 +136,25 @@
             labelLog.TabIndex = 17;
             labelLog.Text = "label3";
             // 
-            // button1
+            // buttonReveal
             // 
-            button1.Location = new Point(382, 395);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 18;
-            button1.Text = "Reveal";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            buttonReveal.Location = new Point(333, 3);
+            buttonReveal.Name = "buttonReveal";
+            buttonReveal.Size = new Size(94, 29);
+            buttonReveal.TabIndex = 18;
+            buttonReveal.Text = "Reveal";
+            buttonReveal.UseVisualStyleBackColor = true;
+            buttonReveal.Click += buttonReveal_Click;
             // 
-            // button2
+            // buttonDeal
             // 
-            button2.Location = new Point(641, 352);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 29);
-            button2.TabIndex = 19;
-            button2.Text = "Deal";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            buttonDeal.Location = new Point(103, 3);
+            buttonDeal.Name = "buttonDeal";
+            buttonDeal.Size = new Size(94, 29);
+            buttonDeal.TabIndex = 19;
+            buttonDeal.Text = "Deal";
+            buttonDeal.UseVisualStyleBackColor = true;
+            buttonDeal.Click += buttonDeal_Click;
             // 
             // label5
             // 
@@ -234,15 +237,15 @@
             pictureBox8.TabIndex = 8;
             pictureBox8.TabStop = false;
             // 
-            // button3
+            // buttonShuffle
             // 
-            button3.Location = new Point(282, 395);
-            button3.Name = "button3";
-            button3.Size = new Size(94, 29);
-            button3.TabIndex = 20;
-            button3.Text = "Shuffle";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            buttonShuffle.Location = new Point(3, 3);
+            buttonShuffle.Name = "buttonShuffle";
+            buttonShuffle.Size = new Size(94, 29);
+            buttonShuffle.TabIndex = 20;
+            buttonShuffle.Text = "Shuffle";
+            buttonShuffle.UseVisualStyleBackColor = true;
+            buttonShuffle.Click += buttonShuffle_Click;
             // 
             // labelShuffle
             // 
@@ -253,14 +256,35 @@
             labelShuffle.TabIndex = 21;
             labelShuffle.Text = "label3";
             // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.Controls.Add(buttonShuffle);
+            flowLayoutPanel1.Controls.Add(buttonDeal);
+            flowLayoutPanel1.Controls.Add(buttonStart);
+            flowLayoutPanel1.Controls.Add(buttonReveal);
+            flowLayoutPanel1.Location = new Point(327, 371);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(444, 38);
+            flowLayoutPanel1.TabIndex = 22;
+            // 
+            // buttonStart
+            // 
+            buttonStart.Location = new Point(203, 3);
+            buttonStart.Name = "buttonStart";
+            buttonStart.Size = new Size(124, 29);
+            buttonStart.TabIndex = 21;
+            buttonStart.Text = "Start spelers";
+            buttonStart.UseVisualStyleBackColor = true;
+            buttonStart.Click += buttonStart_Click;
+            // 
             // startScene
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkGreen;
             ClientSize = new Size(800, 450);
+            Controls.Add(flowLayoutPanel1);
             Controls.Add(labelShuffle);
-            Controls.Add(button3);
             Controls.Add(label7);
             Controls.Add(pictureBox7);
             Controls.Add(label6);
@@ -273,8 +297,6 @@
             Controls.Add(pictureBox4);
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox2);
-            Controls.Add(button2);
-            Controls.Add(button1);
             Controls.Add(labelLog);
             Controls.Add(pictureBoxDealer2);
             Controls.Add(pictureBoxDealer1);
@@ -292,6 +314,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
+            flowLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -306,8 +329,8 @@
         private PictureBox pictureBoxDealer1;
         private PictureBox pictureBoxDealer2;
         private Label labelLog;
-        private Button button1;
-        private Button button2;
+        private Button buttonReveal;
+        private Button buttonDeal;
         private Label label5;
         private PictureBox pictureBox3;
         private PictureBox pictureBox4;
@@ -317,7 +340,9 @@
         private Label label7;
         private PictureBox pictureBox7;
         private PictureBox pictureBox8;
-        private Button button3;
+        private Button buttonShuffle;
         private Label labelShuffle;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private Button buttonStart;
     }
 }
