@@ -206,9 +206,9 @@
             labelLog.AutoSize = true;
             labelLog.Location = new Point(431, 291);
             labelLog.Name = "labelLog";
-            labelLog.Size = new Size(50, 20);
+            labelLog.Size = new Size(42, 20);
             labelLog.TabIndex = 17;
-            labelLog.Text = "label3";
+            labelLog.Text = "label";
             // 
             // startScene
             // 
