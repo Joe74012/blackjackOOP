@@ -3,73 +3,54 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using blackjackOOP.Enums;
 
 namespace blackjackOOP
 {
-    public enum Rank 
-    { 
-        ACE = 1,
-        TWO,
-        THREE,
-        FOUR,
-        FIVE,
-        SIX,
-        SEVEN,
-        EIGHT,
-        NINE,
-        TEN,
-        JACK,
-        QUEEN,
-        KING
-    }
-
-    public enum Suit 
-    { 
-        HEARTS,
-        CLUBS,
-        DIAMONDS,
-        SPADES
-    }
     public class Card
     {
         private Rank rank;
-        private int cardValue;
         private Suit suit;
         private bool isfacedown;
 
+        public Rank Rank { get { return rank; } }
+        public Suit Suit { get { return suit; } }
+
         public int Value
         {
-            get {
-                switch(rank)
+            get
+            {
+                switch (rank)
                 {
-                    case Rank.TWO:
-                        cardValue = (int)2;
-                        break;
                     case Rank.JACK:
                     case Rank.QUEEN:
                     case Rank.KING:
-                        Value = 10;
-                        break;
-                }
-                if (rank == Rank.TWO)
-                {
-                    cardValue = 2;
-                }
-                return cardValue; 
-            }
-            set {
-                if(value < 5)
-                {
-                    this.cardValue = value;
+                        return 10;
+
+                    case Rank.ACE:
+                        return 11;
+
+                    default:
+                        return (int)rank;
                 }
             }
         }
 
-        public Card(Rank rank, Suit suit) 
-        { 
+        public Card(Rank rank, Suit suit)
+        {
             this.rank = rank;
             this.suit = suit;
+            this.isfacedown = false;
         }
+
+        public string getImage()
+        {
+            string rankName = rank.ToString().ToLower();
+            string suitName = suit.ToString().ToLower();
+            return $"{rankName}_of_{suitName}.png";
+        }
+
+
 
         public void Flip()
         {
