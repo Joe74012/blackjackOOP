@@ -28,7 +28,7 @@ namespace blackjackOOP
                         return 10;
 
                     case Rank.ACE:
-                        return 11; // later kun je 1 of 11 maken
+                        return 11;
 
                     default:
                         return (int)rank;

@@ -119,7 +119,7 @@ namespace blackjackOOP
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
-                e.Handled = true; // teken wordt genegeerd
+                e.Handled = true;
             }
         }
     }
