@@ -132,9 +132,9 @@
             labelLog.AutoSize = true;
             labelLog.Location = new Point(410, 226);
             labelLog.Name = "labelLog";
-            labelLog.Size = new Size(50, 20);
+            labelLog.Size = new Size(42, 20);
             labelLog.TabIndex = 17;
-            labelLog.Text = "label3";
+            labelLog.Text = "label";
             // 
             // buttonReveal
             // 
