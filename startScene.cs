@@ -162,7 +162,7 @@ namespace blackjackOOP
             isShuffled = true;
             buttonDeal.Visible = true;
             buttonDeal.Enabled = true;
-        }}
+        }
 
         private async void buttonDeal_Click(object sender, EventArgs e)
         {
