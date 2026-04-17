@@ -1,0 +1,65 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using blackjackOOP.Enums;
+
+namespace blackjackOOP
+{
+    public class Card
+    {
+        private Rank rank;
+        private Suit suit;
+        private bool isfacedown;
+
+        public Rank Rank { get { return rank; } }
+        public Suit Suit { get { return suit; } }
+
+        public int Value
+        {
+            get
+            {
+                switch (rank)
+                {
+                    case Rank.JACK:
+                    case Rank.QUEEN:
+                    case Rank.KING:
+                        return 10;
+
+                    case Rank.ACE:
+                        return 11;
+
+                    default:
+                        return (int)rank;
+                }
+            }
+        }
+
+        public Card(Rank rank, Suit suit)
+        {
+            this.rank = rank;
+            this.suit = suit;
+            this.isfacedown = false;
+        }
+
+        public string getImage()
+        {
+            string rankName = rank.ToString().ToLower();
+            string suitName = suit.ToString().ToLower();
+            return $"{rankName}_of_{suitName}.png";
+        }
+
+
+
+        public void Flip()
+        {
+
+        }
+
+        public override string ToString()
+        {
+            return rank.ToString() + " OF " + suit.ToString();
+        }
+    }
+}
