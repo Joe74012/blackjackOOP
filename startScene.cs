@@ -15,6 +15,8 @@ namespace blackjackOOP
         private List<List<PictureBox>> playerBoxes = new List<List<PictureBox>>();
         private ShoeSetup shoeSetup;
         private DealSetup dealSetup;
+        private Dealer dealer;
+        private ScoreSetup scoreSetup;
         private bool isShuffled = false;
         private bool gameStarted = false;
         private PlayerSetup playerSetup;
@@ -27,6 +29,7 @@ namespace blackjackOOP
             this.playerSetup = playerSetup;
             this.shoeSetup = shoeSetup;
             this.players = playerSetup.AantalSpelers;
+            this.scoreSetup = new ScoreSetup();
 
             label1.Text = "Aantal kaarten: " + shoeSetup.TotaalKaarten();
             label2.Text = "Spelers: " + playerSetup.AantalSpelers;
@@ -42,6 +45,8 @@ namespace blackjackOOP
             buttonDeal.Enabled = false;
             buttonReveal.Visible = false;
             buttonReveal.Enabled = false;
+            buttonHit.Visible = false;
+            buttonHit.Enabled = false;
         }
 
         private Image getCardImage(Card card)
@@ -82,6 +87,10 @@ namespace blackjackOOP
             dealSetup = new DealSetup(playerSetup, shoeSetup);
             botPlayers = dealSetup.Spelers;
             playerBoxes.Clear();
+
+            dealer = new Dealer();
+            dealer.Hand.Add(dealSetup.DealerKaart1);
+            dealer.Hand.Add(dealSetup.DealerKaart2);
 
             for (int i = 0; i < botPlayers.Count; i++)
             {
@@ -142,6 +151,9 @@ namespace blackjackOOP
 
                 labelLog.Text = log;
             }
+
+            buttonHit.Visible = true;
+            buttonHit.Enabled = true;
         }
 
         private async void buttonShuffle_Click(object sender, EventArgs e)
@@ -170,48 +182,3 @@ namespace blackjackOOP
             buttonDeal.Visible = false;
 
             try
-            {
-                await DealCards(players);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                buttonDeal.Enabled = true;
-                buttonDeal.Visible = true;
-            }
-
-            buttonStart.Visible = true;
-            buttonStart.Enabled = true;
-        }
-
-        private void buttonReveal_Click(object sender, EventArgs e)
-        {
-            if (!gameStarted)
-            {
-                MessageBox.Show("Deal the cards first!");
-                return;
-            }
-
-            buttonReveal.Enabled = false;
-            buttonReveal.Visible = false;
-            RevealDealerCard();
-        }
-
-        private async void buttonStart_Click(object sender, EventArgs e)
-        {
-            if (!gameStarted)
-            {
-                MessageBox.Show("Deal the cards first!");
-                return;
-            }
-
-            buttonStart.Visible = false;
-            buttonStart.Enabled = false;
-
-            await PlayBotTurns(botPlayers);
-
-            buttonReveal.Enabled = true;
-            buttonReveal.Visible = true;
-        }
-    }
-}
