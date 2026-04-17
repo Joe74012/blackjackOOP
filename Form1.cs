@@ -9,7 +9,9 @@ namespace blackjackOOP
 
         GameState currentGameState = GameState.SETUP;
         int ingevoerdGetal;
+        //setups::
         PlayerSetup playerSetup;
+        ShoeSetup shoeSetup;
 
         public Form1()
         {
@@ -24,7 +26,6 @@ namespace blackjackOOP
         {
             if (int.TryParse(textBox1.Text, out int getal))
                 ingevoerdGetal = getal;
-
             switch (currentGameState)
             {
                 case GameState.START:
@@ -36,7 +37,8 @@ namespace blackjackOOP
                 case GameState.SETUP:
                     if (playerSetup != null && ingevoerdGetal > 0)
                     {
-                        startScene scherm2 = new startScene(ingevoerdGetal, playerSetup);
+                        shoeSetup = new ShoeSetup(ingevoerdGetal);
+                        startScene scherm2 = new startScene(shoeSetup, playerSetup);
                         scherm2.WindowState = FormWindowState.Maximized;
                         scherm2.Show();
                         this.Hide();
