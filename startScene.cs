@@ -33,6 +33,7 @@ namespace blackjackOOP
 
             label1.Text = "Aantal kaarten: " + shoeSetup.TotaalKaarten();
             label2.Text = "Spelers: " + playerSetup.AantalSpelers;
+            labelScore.Text = "Score: 0";
 
             label4.Text = playerSetup.Namen.Count > 0 ? playerSetup.Namen[0] : "";
             label5.Text = playerSetup.Namen.Count > 1 ? playerSetup.Namen[1] : "";
@@ -152,8 +153,17 @@ namespace blackjackOOP
                 labelLog.Text = log;
             }
 
-            buttonHit.Visible = true;
-            buttonHit.Enabled = true;
+            if (dealer.HandValue() < 21)
+            {
+                buttonHit.Visible = true;
+                buttonHit.Enabled = true;
+            }
+            else
+            {
+                labelLog.Text += "Dealer heeft al 21 of hoger, hit niet toegestaan.\n";
+                buttonReveal.Visible = true;
+                buttonReveal.Enabled = true;
+            }
         }
 
         private async void buttonShuffle_Click(object sender, EventArgs e)
@@ -231,12 +241,12 @@ namespace blackjackOOP
             if (dealer.MoetHitten())
             {
                 scoreSetup.GeefPunten();
-                labelLog.Text += $"Dealer hit +1 punt (score: {scoreSetup.Punten})";
+                labelLog.Text += $"Dealer hit → +1 punt (score: {scoreSetup.Punten})\n";
             }
             else
             {
                 scoreSetup.GeefStrafpunten();
-                labelLog.Text += $"Dealer had niet moeten hitten -1 punt (score: {scoreSetup.Punten})";
+                labelLog.Text += $"Dealer had niet moeten hitten → -1 punt (score: {scoreSetup.Punten})\n";
             }
 
             Card newCard = shoeSetup.DealKaart();
@@ -248,6 +258,8 @@ namespace blackjackOOP
             newBox.Location = new Point(pictureBoxDealer2.Location.X + pictureBoxDealer2.Width + 5, pictureBoxDealer2.Location.Y);
             newBox.Image = getCardImage(newCard);
             this.Controls.Add(newBox);
+
+            labelScore.Text = "Score: " + scoreSetup.Punten;
 
             buttonHit.Enabled = false;
             buttonHit.Visible = false;

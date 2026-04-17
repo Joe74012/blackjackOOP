@@ -52,6 +52,7 @@
             flowLayoutPanel1 = new FlowLayoutPanel();
             buttonStart = new Button();
             buttonHit = new Button();
+            labelScore = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxDealer1).BeginInit();
@@ -289,12 +290,22 @@
             buttonHit.UseVisualStyleBackColor = true;
             buttonHit.Click += buttonHit_Click;
             // 
+            // labelScore
+            // 
+            labelScore.AutoSize = true;
+            labelScore.Location = new Point(514, 94);
+            labelScore.Name = "labelScore";
+            labelScore.Size = new Size(50, 20);
+            labelScore.TabIndex = 23;
+            labelScore.Text = "label3";
+            // 
             // startScene
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkGreen;
             ClientSize = new Size(800, 450);
+            Controls.Add(labelScore);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(labelShuffle);
             Controls.Add(label7);
@@ -357,5 +368,6 @@
         private FlowLayoutPanel flowLayoutPanel1;
         private Button buttonStart;
         private Button buttonHit;
+        private Label labelScore;
     }
 }
