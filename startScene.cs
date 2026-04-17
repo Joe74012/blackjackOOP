@@ -21,17 +21,13 @@ namespace blackjackOOP
         private PlayerSetup playerSetup;
 
         private Random rnd = new Random();
-        public startScene(int ingevoerdGetal, PlayerSetup playerSetup)
+        public startScene(ShoeSetup shoeSetup, PlayerSetup playerSetup)
         {
             InitializeComponent();
             this.playerSetup = playerSetup;
             this.players = playerSetup.AantalSpelers;
 
-            currentDecks = new deck[ingevoerdGetal];
-            for (int i = 0; i < ingevoerdGetal; i++)
-            {
-                currentDecks[i] = new deck(1);
-            }
+            currentDecks = shoeSetup.Decks.ToArray();
 
             int totaal = currentDecks.Sum(d => d.Cards.Count);
             label1.Text = "Aantal kaarten: " + totaal;
