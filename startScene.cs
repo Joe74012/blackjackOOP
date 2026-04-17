@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -13,62 +10,53 @@ namespace blackjackOOP
 {
     public partial class startScene : Form
     {
-        // Variabelen opslaan in startScene
-        private int kaarten;
         private int players;
-        int kaartPerSpeler;
-        private Card dealerCard1;  // <-- add
-        private Card dealerCard2;  // <-- add (the hidden one)
+        private List<Player> botPlayers = new List<Player>();
+        private List<List<PictureBox>> playerBoxes = new List<List<PictureBox>>();
+        private deck[] currentDecks; //shoe
+        private Card dealerCard1;
+        private Card dealerCard2;
+        private bool isShuffled = false;
+        private bool gameStarted = false;
+        private PlayerSetup playerSetup;
 
-        // Constructor uitbreiden met parameters
-
-        private void givePlayerNames(int aantalSpelers)
-        {
-            string[] naamSpeler1 = { "Alice", "Bob", "Charlie", "Diana", "Eve" };
-            string[] naamSpeler2 = { "Frank", "Grace", "Hank", "Ivan", "Julia" };
-            string[] naamSpeler3 = { "Kevin", "Laura", "Mike", "Nina", "Oscar" };
-            string[] naamSpeler4 = { "Paul", "Quinn", "Rachel", "Steve", "Tina" };
-
-            Random random = new Random();
-
-            switch (aantalSpelers)
-            {
-                case 1:
-                    label4.Text = naamSpeler1[random.Next(0, 5)];
-                    label5.Text = "";
-                    label6.Text = "";
-                    label7.Text = "";
-                    break;
-                case 2:
-                    label4.Text = naamSpeler1[random.Next(0, 5)];
-                    label5.Text = naamSpeler2[random.Next(0, 5)];
-                    label6.Text = "";
-                    label7.Text = "";
-                    break;
-                case 3:
-                    label4.Text = naamSpeler1[random.Next(0, 5)];
-                    label5.Text = naamSpeler2[random.Next(0, 5)];
-                    label6.Text = naamSpeler3[random.Next(0, 5)];
-                    label7.Text = "";
-                    break;
-                case 4:
-                    label4.Text = naamSpeler1[random.Next(0, 5)];
-                    label5.Text = naamSpeler2[random.Next(0, 5)];
-                    label6.Text = naamSpeler3[random.Next(0, 5)];
-                    label7.Text = naamSpeler4[random.Next(0, 5)];
-                    break;
-            }
-        }
-        public startScene(int ingevoerdGetal, int aantalPlayers)
+        private Random rnd = new Random();
+        public startScene(ShoeSetup shoeSetup, PlayerSetup playerSetup)
         {
             InitializeComponent();
-            deck deck = new deck(ingevoerdGetal);
-            deck.Shuffle();
-            label1.Text = "Aantal kaarten: " + deck.Cards.Count;
-            this.players = aantalPlayers;
-            label2.Text = "Spelers: " + aantalPlayers.ToString();
-            givePlayerNames(aantalPlayers);
-            DealCards(deck, aantalPlayers);
+            this.playerSetup = playerSetup;
+            this.players = playerSetup.AantalSpelers;
+
+            currentDecks = shoeSetup.Decks.ToArray();
+
+            int totaal = currentDecks.Sum(d => d.Cards.Count);
+            label1.Text = "Aantal kaarten: " + totaal;
+            label2.Text = "Spelers: " + playerSetup.AantalSpelers;
+
+            label4.Text = playerSetup.Namen.Count > 0 ? playerSetup.Namen[0] : "";
+            label5.Text = playerSetup.Namen.Count > 1 ? playerSetup.Namen[1] : "";
+            label6.Text = playerSetup.Namen.Count > 2 ? playerSetup.Namen[2] : "";
+            label7.Text = playerSetup.Namen.Count > 3 ? playerSetup.Namen[3] : "";
+
+            buttonStart.Visible = false;
+            buttonStart.Enabled = false;
+            buttonDeal.Visible = false;
+            buttonDeal.Enabled = false;
+            buttonReveal.Visible = false;
+            buttonReveal.Enabled = false;
+        }
+
+        private Card DealFromShoe()
+        {
+            deck gekozenDeck;
+
+            do
+            {
+                gekozenDeck = currentDecks[rnd.Next(currentDecks.Length)];
+            }
+            while (gekozenDeck.Cards.Count == 0);
+
+            return gekozenDeck.Deal();
         }
 
         private Image getCardImage(Card card)
@@ -97,33 +85,167 @@ namespace blackjackOOP
             pictureBoxDealer2.Image = getCardImage(dealerCard2);
         }
 
-        private void DealCards(deck deck, int aantalSpelers)
+        private async Task DealCards(int aantalSpelers)
         {
             Label[] nameLabels = { label4, label5, label6, label7 };
-
             PictureBox[,] cardBoxes = {
-            { pictureBox1, pictureBox2 },
-            { pictureBox3, pictureBox4 },
-            { pictureBox5, pictureBox6 },
-            { pictureBox7, pictureBox8 }
-        };
+                { pictureBox1, pictureBox2 },
+                { pictureBox3, pictureBox4 },
+                { pictureBox5, pictureBox6 },
+                { pictureBox7, pictureBox8 }
+            };
+
+            botPlayers.Clear();
+            playerBoxes.Clear();
 
             for (int i = 0; i < aantalSpelers; i++)
             {
-                Card card1 = deck.Deal();
-                Card card2 = deck.Deal();
+                Player player = new Player(nameLabels[i].Text);
+                botPlayers.Add(player);
 
+                Card card1 = DealFromShoe();
+                player.Hand.Add(card1);
                 cardBoxes[i, 0].Image = getCardImage(card1);
+                playerBoxes.Add(new List<PictureBox> { cardBoxes[i, 0] });
+                await Task.Delay(500);
+
+                Card card2 = DealFromShoe();
+                player.Hand.Add(card2);
                 cardBoxes[i, 1].Image = getCardImage(card2);
+                playerBoxes[i].Add(cardBoxes[i, 1]);
+                await Task.Delay(250);
             }
 
-            dealerCard1 = deck.Deal();
-            dealerCard2 = deck.Deal();
-
+            dealerCard1 = DealFromShoe();
             pictureBoxDealer1.Image = getCardImage(dealerCard1);
-            pictureBoxDealer2.Image = getCardBackImage();
+            await Task.Delay(250);
 
-            label1.Text = "Aantal kaarten: " + deck.Cards.Count;
+            dealerCard2 = DealFromShoe();
+            pictureBoxDealer2.Image = getCardBackImage();
+            await Task.Delay(250);
+
+            int totaal = currentDecks.Sum(d => d.Cards.Count);
+            label1.Text = "Aantal kaarten: " + totaal;
+
+            gameStarted = true;
+            buttonStart.Visible = true;
+            buttonStart.Enabled = true;
+        }
+
+        private async Task PlayBotTurns(List<Player> players)
+        {
+            string log = "";
+
+            for (int i = 0; i < players.Count; i++)
+            {
+                Player player = players[i];
+                string action = player.BotDecide();
+
+                if (action == "hit")
+                {
+                    Card newCard = DealFromShoe();
+                    player.Hand.Add(newCard);
+
+                    PictureBox lastBox = playerBoxes[i][playerBoxes[i].Count - 1];
+                    PictureBox newBox = new PictureBox();
+                    newBox.SizeMode = PictureBoxSizeMode.Zoom;
+                    newBox.Size = lastBox.Size;
+                    newBox.Location = new Point(lastBox.Location.X + lastBox.Width + 5, lastBox.Location.Y);
+                    newBox.Image = getCardImage(newCard);
+                    this.Controls.Add(newBox);
+                    playerBoxes[i].Add(newBox);
+
+                    log += $"{player.Name} hits → got {newCard}\n";
+                    await Task.Delay(1000);
+                }
+                else if (action == "stand")
+                {
+                    player.IsStanding = true;
+                    log += $"{player.Name} stands with {player.HandValue()}\n";
+                    await Task.Delay(1000);
+                }
+
+                labelLog.Text = log;
+            }
+        }
+
+        private async void buttonShuffle_Click(object sender, EventArgs e)
+        {
+            buttonShuffle.Enabled = false;
+            buttonShuffle.Visible = false;
+            labelShuffle.Text = "Shuffling...";
+
+            for (int i = 0; i < 15; i++)
+            {
+                int totaal = currentDecks.Sum(d => d.Cards.Count);
+                Card randomCard = currentDecks[rnd.Next(currentDecks.Length)].Cards[0];
+                pictureBoxDealer1.Image = getCardImage(randomCard);
+                pictureBoxDealer2.Image = getCardImage(randomCard);
+                await Task.Delay(80);
+            }
+
+            foreach (deck d in currentDecks)
+            {
+                d.Shuffle();
+            }
+
+            pictureBoxDealer1.Image = null;
+            pictureBoxDealer2.Image = null;
+
+            labelShuffle.Text = "Shuffled!";
+            await Task.Delay(800);
+            labelShuffle.Text = "";
+
+            isShuffled = true;
+            buttonDeal.Visible = true;
+            buttonDeal.Enabled = true;
+        }
+
+        private async void buttonDeal_Click(object sender, EventArgs e)
+        {
+            if (!isShuffled)
+            {
+                MessageBox.Show("You must shuffle first!");
+                return;
+            }
+
+            buttonDeal.Enabled = false;
+            buttonDeal.Visible = false;
+
+            await DealCards(players);
+
+            buttonStart.Visible = true;
+            buttonStart.Enabled = true;
+        }
+
+        private void buttonReveal_Click(object sender, EventArgs e)
+        {
+            if (!gameStarted)
+            {
+                MessageBox.Show("Deal the cards first!");
+                return;
+            }
+
+            buttonReveal.Enabled = false;
+            buttonReveal.Visible = false;
+            RevealDealerCard();
+        }
+
+        private async void buttonStart_Click(object sender, EventArgs e)
+        {
+            if (!gameStarted)
+            {
+                MessageBox.Show("Deal the cards first!");
+                return;
+            }
+
+            buttonStart.Visible = false;
+            buttonStart.Enabled = false;
+
+            await PlayBotTurns(botPlayers);
+
+            buttonReveal.Enabled = true;
+            buttonReveal.Visible = true;
         }
     }
 }
