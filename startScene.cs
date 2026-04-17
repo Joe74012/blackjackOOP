@@ -241,7 +241,13 @@ namespace blackjackOOP
 
             Card newCard = shoeSetup.DealKaart();
             dealer.Hand.Add(newCard);
-            pictureBoxDealer2.Image = getCardImage(newCard);
+
+            PictureBox newBox = new PictureBox();
+            newBox.SizeMode = PictureBoxSizeMode.Zoom;
+            newBox.Size = pictureBoxDealer2.Size;
+            newBox.Location = new Point(pictureBoxDealer2.Location.X + pictureBoxDealer2.Width + 5, pictureBoxDealer2.Location.Y);
+            newBox.Image = getCardImage(newCard);
+            this.Controls.Add(newBox);
 
             buttonHit.Enabled = false;
             buttonHit.Visible = false;
