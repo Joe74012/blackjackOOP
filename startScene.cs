@@ -58,7 +58,7 @@ namespace blackjackOOP
             }
         }
 
-        public startScene(int ingevoerdGetal, int aantalPlayers)
+        public startScene(int ingevoerdGetal, PlayerSetup playerSetup)
         {
             InitializeComponent();
             currentDecks = new deck[ingevoerdGetal];
@@ -68,13 +68,14 @@ namespace blackjackOOP
                 currentDecks[i] = new deck(1);
             }
 
-            this.players = aantalPlayers;
+            this.players = playerSetup.AantalSpelers;
+           
 
             int totaal = currentDecks.Sum(d => d.Cards.Count);
             label1.Text = "Aantal kaarten: " + totaal;
 
-            label2.Text = "Spelers: " + aantalPlayers.ToString();
-            givePlayerNames(aantalPlayers);
+            label2.Text = "Spelers: " + playerSetup.AantalSpelers.ToString();
+            givePlayerNames(playerSetup.AantalSpelers);
 
             buttonStart.Visible = false;
             buttonStart.Enabled = false;
