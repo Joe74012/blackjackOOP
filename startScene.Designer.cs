@@ -51,6 +51,8 @@
             labelShuffle = new Label();
             flowLayoutPanel1 = new FlowLayoutPanel();
             buttonStart = new Button();
+            buttonHit = new Button();
+            labelScore = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxDealer1).BeginInit();
@@ -262,9 +264,10 @@
             flowLayoutPanel1.Controls.Add(buttonDeal);
             flowLayoutPanel1.Controls.Add(buttonStart);
             flowLayoutPanel1.Controls.Add(buttonReveal);
+            flowLayoutPanel1.Controls.Add(buttonHit);
             flowLayoutPanel1.Location = new Point(327, 371);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(444, 38);
+            flowLayoutPanel1.Size = new Size(548, 38);
             flowLayoutPanel1.TabIndex = 22;
             // 
             // buttonStart
@@ -277,12 +280,32 @@
             buttonStart.UseVisualStyleBackColor = true;
             buttonStart.Click += buttonStart_Click;
             // 
+            // buttonHit
+            // 
+            buttonHit.Location = new Point(433, 3);
+            buttonHit.Name = "buttonHit";
+            buttonHit.Size = new Size(94, 29);
+            buttonHit.TabIndex = 22;
+            buttonHit.Text = "Hit";
+            buttonHit.UseVisualStyleBackColor = true;
+            buttonHit.Click += buttonHit_Click;
+            // 
+            // labelScore
+            // 
+            labelScore.AutoSize = true;
+            labelScore.Location = new Point(514, 94);
+            labelScore.Name = "labelScore";
+            labelScore.Size = new Size(50, 20);
+            labelScore.TabIndex = 23;
+            labelScore.Text = "label3";
+            // 
             // startScene
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkGreen;
             ClientSize = new Size(800, 450);
+            Controls.Add(labelScore);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(labelShuffle);
             Controls.Add(label7);
@@ -344,5 +367,7 @@
         private Label labelShuffle;
         private FlowLayoutPanel flowLayoutPanel1;
         private Button buttonStart;
+        private Button buttonHit;
+        private Label labelScore;
     }
 }

@@ -15,6 +15,8 @@ namespace blackjackOOP
         private List<List<PictureBox>> playerBoxes = new List<List<PictureBox>>();
         private ShoeSetup shoeSetup;
         private DealSetup dealSetup;
+        private Dealer dealer;
+        private ScoreSetup scoreSetup;
         private bool isShuffled = false;
         private bool gameStarted = false;
         private PlayerSetup playerSetup;
@@ -27,9 +29,11 @@ namespace blackjackOOP
             this.playerSetup = playerSetup;
             this.shoeSetup = shoeSetup;
             this.players = playerSetup.AantalSpelers;
+            this.scoreSetup = new ScoreSetup();
 
             label1.Text = "Aantal kaarten: " + shoeSetup.TotaalKaarten();
             label2.Text = "Spelers: " + playerSetup.AantalSpelers;
+            labelScore.Text = "Score: 0";
 
             label4.Text = playerSetup.Namen.Count > 0 ? playerSetup.Namen[0] : "";
             label5.Text = playerSetup.Namen.Count > 1 ? playerSetup.Namen[1] : "";
@@ -42,6 +46,8 @@ namespace blackjackOOP
             buttonDeal.Enabled = false;
             buttonReveal.Visible = false;
             buttonReveal.Enabled = false;
+            buttonHit.Visible = false;
+            buttonHit.Enabled = false;
         }
 
         private Image getCardImage(Card card)
@@ -82,6 +88,10 @@ namespace blackjackOOP
             dealSetup = new DealSetup(playerSetup, shoeSetup);
             botPlayers = dealSetup.Spelers;
             playerBoxes.Clear();
+
+            dealer = new Dealer();
+            dealer.Hand.Add(dealSetup.DealerKaart1);
+            dealer.Hand.Add(dealSetup.DealerKaart2);
 
             for (int i = 0; i < botPlayers.Count; i++)
             {
@@ -141,6 +151,16 @@ namespace blackjackOOP
                 }
 
                 labelLog.Text = log;
+            }
+
+            if (dealer.HandValue() < 21)
+            {
+                buttonHit.Visible = true;
+                buttonHit.Enabled = true;
+            }
+            else
+            {
+                labelLog.Text += "Dealer heeft al 21 of hoger, hit niet toegestaan.";
             }
         }
 
@@ -209,7 +229,35 @@ namespace blackjackOOP
             buttonStart.Enabled = false;
 
             await PlayBotTurns(botPlayers);
+        }
 
+        private void buttonHit_Click(object sender, EventArgs e)
+        {
+            if (dealer.MoetHitten())
+            {
+                scoreSetup.GeefPunten();
+                labelLog.Text += $"Dealer hit → +1 punt (score: {scoreSetup.Punten})\n";
+            }
+            else
+            {
+                scoreSetup.GeefStrafpunten();
+                labelLog.Text += $"Dealer had niet moeten hitten → -1 punt (score: {scoreSetup.Punten})\n";
+            }
+
+            Card newCard = shoeSetup.DealKaart();
+            dealer.Hand.Add(newCard);
+
+            PictureBox newBox = new PictureBox();
+            newBox.SizeMode = PictureBoxSizeMode.Zoom;
+            newBox.Size = pictureBoxDealer2.Size;
+            newBox.Location = new Point(pictureBoxDealer2.Location.X + pictureBoxDealer2.Width + 5, pictureBoxDealer2.Location.Y);
+            newBox.Image = getCardImage(newCard);
+            this.Controls.Add(newBox);
+
+            labelScore.Text = "Score: " + scoreSetup.Punten;
+
+            buttonHit.Enabled = false;
+            buttonHit.Visible = false;
             buttonReveal.Enabled = true;
             buttonReveal.Visible = true;
         }
