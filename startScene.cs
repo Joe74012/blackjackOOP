@@ -177,16 +177,19 @@ namespace blackjackOOP
 
         private async void buttonDeal_Click(object sender, EventArgs e)
         {
-            if (!isShuffled)
-            {
-                MessageBox.Show("You must shuffle first!");
-                return;
-            }
-
             buttonDeal.Enabled = false;
             buttonDeal.Visible = false;
 
-            await DealCards(players);
+            try
+            {
+                await DealCards(players);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                buttonDeal.Enabled = true;
+                buttonDeal.Visible = true;
+            }
 
             buttonStart.Visible = true;
             buttonStart.Enabled = true;
