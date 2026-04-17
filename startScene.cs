@@ -150,18 +150,7 @@ namespace blackjackOOP
             buttonShuffle.Visible = false;
             labelShuffle.Text = "Shuffling...";
 
-            for (int i = 0; i < 15; i++)
-            {
-                Card randomCard = shoeSetup.Decks[rnd.Next(shoeSetup.Decks.Count)].Cards[0];
-                pictureBoxDealer1.Image = getCardImage(randomCard);
-                pictureBoxDealer2.Image = getCardImage(randomCard);
-                await Task.Delay(80);
-            }
-
-            foreach (deck d in shoeSetup.Decks)
-            {
-                d.Shuffle();
-            }
+            shoeSetup.Shuffle();
 
             pictureBoxDealer1.Image = null;
             pictureBoxDealer2.Image = null;
@@ -173,7 +162,7 @@ namespace blackjackOOP
             isShuffled = true;
             buttonDeal.Visible = true;
             buttonDeal.Enabled = true;
-        }
+        }}
 
         private async void buttonDeal_Click(object sender, EventArgs e)
         {
