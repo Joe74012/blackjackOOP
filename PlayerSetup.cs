@@ -9,9 +9,13 @@
     {
         AantalSpelers = aantalSpelers;
         Namen = new List<string>();
+
         Random rnd = new Random();
-        var shuffle = AlleNamen.OrderBy(_ => rnd.Next()).ToList();
+        List<string> geshuffled = AlleNamen.OrderBy(_ => rnd.Next()).ToList();
+
         for (int i = 0; i < aantalSpelers; i++)
-            Namen.Add(shuffle[i]);
+        {
+            Namen.Add(geshuffled[i]);
+        }
     }
 }
