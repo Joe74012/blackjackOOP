@@ -4,7 +4,7 @@ namespace blackjackOOP
 {
     public class deck
     {
-        public List<Card> Cards { get; private set; }
+        public List<Card> Cards { get; set; }
 
         public deck(int aantalDecks)
         {
