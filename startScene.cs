@@ -160,9 +160,7 @@ namespace blackjackOOP
             }
             else
             {
-                labelLog.Text += "Dealer heeft al 21 of hoger, hit niet toegestaan.\n";
-                buttonReveal.Visible = true;
-                buttonReveal.Enabled = true;
+                labelLog.Text += "Dealer heeft al 21 of hoger, hit niet toegestaan.";
             }
         }
 
@@ -231,9 +229,6 @@ namespace blackjackOOP
             buttonStart.Enabled = false;
 
             await PlayBotTurns(botPlayers);
-
-            buttonReveal.Enabled = true;
-            buttonReveal.Visible = true;
         }
 
         private void buttonHit_Click(object sender, EventArgs e)
