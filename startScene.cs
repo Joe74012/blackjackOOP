@@ -182,3 +182,71 @@ namespace blackjackOOP
             buttonDeal.Visible = false;
 
             try
+            {
+                await DealCards(players);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                buttonDeal.Enabled = true;
+                buttonDeal.Visible = true;
+            }
+
+            buttonStart.Visible = true;
+            buttonStart.Enabled = true;
+        }
+
+        private void buttonReveal_Click(object sender, EventArgs e)
+        {
+            if (!gameStarted)
+            {
+                MessageBox.Show("Deal the cards first!");
+                return;
+            }
+
+            buttonReveal.Enabled = false;
+            buttonReveal.Visible = false;
+            RevealDealerCard();
+        }
+
+        private async void buttonStart_Click(object sender, EventArgs e)
+        {
+            if (!gameStarted)
+            {
+                MessageBox.Show("Deal the cards first!");
+                return;
+            }
+
+            buttonStart.Visible = false;
+            buttonStart.Enabled = false;
+
+            await PlayBotTurns(botPlayers);
+
+            buttonReveal.Enabled = true;
+            buttonReveal.Visible = true;
+        }
+
+        private void buttonHit_Click(object sender, EventArgs e)
+        {
+            if (dealer.MoetHitten())
+            {
+                scoreSetup.GeefPunten();
+                labelLog.Text += $"Dealer hit +1 punt (score: {scoreSetup.Punten})";
+            }
+            else
+            {
+                scoreSetup.GeefStrafpunten();
+                labelLog.Text += $"Dealer had niet moeten hitten -1 punt (score: {scoreSetup.Punten})";
+            }
+
+            Card newCard = shoeSetup.DealKaart();
+            dealer.Hand.Add(newCard);
+            pictureBoxDealer2.Image = getCardImage(newCard);
+
+            buttonHit.Enabled = false;
+            buttonHit.Visible = false;
+            buttonReveal.Enabled = true;
+            buttonReveal.Visible = true;
+        }
+    }
+}

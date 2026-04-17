@@ -51,6 +51,7 @@
             labelShuffle = new Label();
             flowLayoutPanel1 = new FlowLayoutPanel();
             buttonStart = new Button();
+            buttonHit = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxDealer1).BeginInit();
@@ -262,9 +263,10 @@
             flowLayoutPanel1.Controls.Add(buttonDeal);
             flowLayoutPanel1.Controls.Add(buttonStart);
             flowLayoutPanel1.Controls.Add(buttonReveal);
+            flowLayoutPanel1.Controls.Add(buttonHit);
             flowLayoutPanel1.Location = new Point(327, 371);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(444, 38);
+            flowLayoutPanel1.Size = new Size(548, 38);
             flowLayoutPanel1.TabIndex = 22;
             // 
             // buttonStart
@@ -276,6 +278,16 @@
             buttonStart.Text = "Start spelers";
             buttonStart.UseVisualStyleBackColor = true;
             buttonStart.Click += buttonStart_Click;
+            // 
+            // buttonHit
+            // 
+            buttonHit.Location = new Point(433, 3);
+            buttonHit.Name = "buttonHit";
+            buttonHit.Size = new Size(94, 29);
+            buttonHit.TabIndex = 22;
+            buttonHit.Text = "Hit";
+            buttonHit.UseVisualStyleBackColor = true;
+            buttonHit.Click += buttonHit_Click;
             // 
             // startScene
             // 
@@ -344,5 +356,6 @@
         private Label labelShuffle;
         private FlowLayoutPanel flowLayoutPanel1;
         private Button buttonStart;
+        private Button buttonHit;
     }
 }
