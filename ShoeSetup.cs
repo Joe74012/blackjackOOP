@@ -15,4 +15,15 @@ public class ShoeSetup
             Decks.Add(new deck(1));
         }
     }
+
+    public int TotaalKaarten()
+    {
+        return Decks.Sum(d => d.Cards.Count);
+    }
+
+    public Card DealKaart()
+    {
+        deck gekozenDeck = Decks.First(d => d.Cards.Count > 0);
+        return gekozenDeck.Deal();
+    }
 }
